@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Forget from './components/Forget';
-// import CallPage from './components/CalPage';
-// import Home from './components/Home';
+import Home from './components/Home';
 import Main from './components/Main';
 import CallMiter from './components/CallMiter';
+import ChangePassword from './components/ChangePassword';
 
 
 function App() {
@@ -17,16 +17,15 @@ function App() {
             <Routes>
                 {/* Font End */}
                 {/* <Route path='/' exact element={<Home />} /> */}
-                <Route path='/' exact element={<Main />} />
+                <Route path='/' exact element={<Home />} />
                 <Route path='/Call' exact element={<CallMiter />} />
 
                 {/* Back End */}
+                <Route path='/Back-End/Main' exact element={<Main />} />
                 <Route path='/Back-End/Login' exact element={<Login />} />
                 <Route path='/Back-End/Register' exact element={<Register />} />
                 <Route path='/Back-End/Forget' exact element={<Forget />} />
-
-                {/* test Route */}
-                {/* <Route path='/CallPage' exact element={<CallPage />} /> */}
+                <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
 
                 {/* Error 404 */}
                 {/* <Route path='*' /> */}

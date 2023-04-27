@@ -94,7 +94,6 @@ function TenantRoom(props) {
                     </Container>
                 </Modal.Body>
                 {/* <Modal.Footer>
-                   
                 </Modal.Footer> */}
             </Modal>
         </>

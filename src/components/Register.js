@@ -16,7 +16,7 @@ function Register() {
 
     function submit(event) {
         const dataList = { target: JSON.stringify(data), table: 'host' }
-        axios.post('http://localhost:5000/api/insert-login', dataList)
+        axios.post('http://localhost:5000/insert-login', dataList)
             .then((response) => {
                 console.log(response.data.message);
             })
