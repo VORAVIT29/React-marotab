@@ -1,0 +1,17 @@
+.bg-load-spiner {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 98%;
+    height: 100%;
+}
+
+.load-spiner {
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

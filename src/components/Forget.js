@@ -41,7 +41,7 @@ function Forget() {
         <section>
             <div className='form-box'>
                 <form onSubmit={submit}>
-                    <h2>Forget</h2>
+                    <h2 className='head-box'>Forget</h2>
                     <div className='inputbox'>
                         <input type='text' required name='admin_password' onChange={changeValue} />
                         <label>Password Admin</label>

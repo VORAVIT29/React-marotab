@@ -39,7 +39,7 @@ function Login() {
                     <div className="form-box">
                         < div className="form-value" >
                             <form onSubmit={login}>
-                                <h2>Login</h2>
+                                <h2 className='head-box'>Login</h2>
                                 <div className="inputbox">
                                     <input type="user" name='username' required onChange={handleChange} />
                                     <label for="">User Name</label>
