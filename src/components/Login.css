@@ -1,24 +1,3 @@
-/*.card-head {
-    text-align: center;
-}
-
-.card-content {
-    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-    background-color: wheat;
-    border-radius: 10px;
-}
-
-.card-body {
-    padding: 10px;
-}
-
-.card-body label {
-    width: 100%;
-}
-
-.btn-submit {
-    border-radius: 10px;
-} */
 
 * {
     margin: 0;
@@ -63,8 +42,8 @@ section {
     align-items: center;
 }
 
-h2 {
-    font-size: 3rem;
+.head-box {
+    font-size: 4rem;
     color: #fff;
     text-align: center;
 }

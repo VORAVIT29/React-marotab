@@ -6,10 +6,10 @@ import Table from 'react-bootstrap/Table';
 function Home() {
     return (
         <div className='home'>
-            <div className='marotab'>
+            <div className='home-marotab'>
                 <img className='img' src="./images/icon_wab.png" />
 
-                <div className='w'>
+                <div className='home-w'>
                     <span>
                         Website for calculating <br />
                         electricity bill by scanning <br />
@@ -54,7 +54,7 @@ function Home() {
                     </Col>
                 </Row>
                 <div>
-                    <table border="3" >
+                    {/* <table border="3" >
                         <thead>
                             <tr>
                                 <th colSpan="3">ใบเสร็จ</th>
@@ -100,7 +100,35 @@ function Home() {
                                 <td>Down load</td>
                             </tr>
                         </thead>
+                    </table> */}
+                    <table className='ta'>
+                        <tr className='t'>
+                            <th className='b p'>Firstname</th>
+                            <th className='b p'>Lastname</th>
+                            <th className='b p'> Savings</th>
+                        </tr>
+                        <tr className='t'>
+                            <td className='b'>Peter</td>
+                            <td className='b'>Griffin</td>
+                            <td className='b'>$100</td>
+                        </tr>
+                        <tr className='t'>
+                            <td className='b'>Lois</td>
+                            <td className='b'>Griffin</td>
+                            <td className='b'>$150</td>
+                        </tr>
+                        <tr className='t'>
+                            <td className='b'>Joe</td>
+                            <td className='b'>Swanson</td>
+                            <td className='b'>$300</td>
+                        </tr>
+                        <tr className='t'>
+                            <td className='b'>Cleveland</td>
+                            <td className='b'>Brown</td>
+                            <td className='b'>$250</td>
+                        </tr>
                     </table>
+
                 </div>
             </div>
 
@@ -112,8 +140,10 @@ function Home() {
                 หกดหกกดหดดหกดหดด
             </div> */}
             <div>
-                <h1>มาร์โรแทบใช้เทคโนโลยีที่ล้ำสมัย</h1>
+                <h1 className='mar'>มาร์โรแทบใช้เทคโนโลยีที่ล้ำสมัย</h1>
             </div>
+            <></>
+
 
             <div className='backgroud'>
                 {/* <img src="./images/bg-miter-02.png" /> */}

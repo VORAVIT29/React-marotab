@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BsExclamationCircle } from "react-icons/bs";
 import interFaceRegister from '../data/DataRegister';
@@ -8,6 +8,8 @@ import './Register.css'
 
 function Register() {
     const [data, setData] = useState(interFaceRegister);
+    const [isRedirect, setIsRedirect] = useState(false);
+    const navigate = useNavigate();
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -15,22 +17,33 @@ function Register() {
     }
 
     function submit(event) {
+        const firstkey = Object.keys(data)[0];
+        delete data[firstkey]
         const dataList = { target: JSON.stringify(data), table: 'host' }
-        axios.post('http://localhost:5000/insert-login', dataList)
+        // local
+        axios.post('http://localhost:5000/insert-data', dataList)
+            // Google Cloud
+            // axios.post('https://marotab-api-python-l5xl7xlxna-as.a.run.app/insert-data', dataList)
             .then((response) => {
                 console.log(response.data.message);
+                setIsRedirect(true);
             })
             .catch((error) => {
                 console.log(error.message);
             });
-        event.preventDefault()
+        event.preventDefault();
     }
 
+    // Randon number AdminPassword
     async function genAdminPass() {
         let num = '';
         for (let index = 0; index < 3; index++)
             num += '' + Math.floor(Math.random() * 10);
         setData({ ...data, 'admin_password': num });
+    }
+
+    if (isRedirect) {
+        navigate("/Back-End/Login");
     }
 
     useEffect(() => {
@@ -41,7 +54,7 @@ function Register() {
         <section>
             <div className='form-box'>
                 <form onSubmit={submit}>
-                    <h2>Register</h2>
+                    <h2 className='head-box'>Register</h2>
                     <div className="inputbox">
                         <input type="text" name='name_host' required defaultValue={data.name_host} onChange={handleChange} />
                         <label for="">Name</label>

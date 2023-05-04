@@ -2,7 +2,7 @@
     text-align: end;
 }
 
-.bg-img {
+.tennant-room-bg-img {
     background-image: url("/public/images/bg-tenant-room.png");
     background-position: center;
     background-size: cover;
@@ -12,8 +12,8 @@
     margin: 0 10px 10px 0;
 }
 
+
 .title {
-    /* background-color: red; */
     border-radius: 50px;
     border: 3px solid gray;
     padding: 10px;
@@ -23,7 +23,7 @@
     margin: 1rem 0 4rem 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
     .align-right {
         text-align: start;
     }
