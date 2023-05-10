@@ -1,136 +1,322 @@
- .home {
-     margin: 0;
-     padding: 0;
-     width: 100%;
-     height: 100%;
-
- }
-
- .home-marotab {
-     width: 100%;
-     height: 100%;
-     border-radius: 0px 0px 20% 20%;
-     background: url('/public/images/bg-img-2.jpg')no-repeat;
-     background-position: center;
-     background-size: cover;
- }
-
- .img {
-     margin-left: 3%;
-     margin-top: 3%;
-     width: 100px;
-     height: 90px;
- }
-
- .home-w {
-     color: aliceblue;
-     margin-left: 3%;
-     margin-top: 3%;
- }
-
- .ma {
-     color: #6e604c;
-     margin-left: 70%;
- }
-
- .wed {
-     color: aliceblue;
-     margin-left: 70%;
- }
-
- .line1 {
-     border: 3px solid white;
-     border-radius: 3px;
-     margin-top: 10%;
- }
-
- .line2 {
-     margin-top: 10%;
-     color: white;
- }
-
- .line {
-     margin-top: 10%;
- }
-
- .unit {
-     padding: 0;
-     width: 100%;
-     height: 100%;
-     /* background: url('/public/images/bg-01.png')no-repeat; */
-     background-position: center;
-     background-size: cover;
- }
-
- .bill {
-     text-align: center;
-     padding-top: 50px;
- }
-
- .room_search {
-     text-align: center;
-     /* display: flex;
-    justify-content: center;
-    align-items: center; */
- }
-
- /* 
-.height{
- height: 100%;
- background-color: aqua;  
+.home {
+    display: contents;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
 }
-.backgroud{
+.home-marotab {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 0px 20% 20%;
+    background: url('/public/images/bg-img-2.jpg')no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.img {
+    margin-left: 3%;
+    margin-top: 3%;
+    width: 100px;
+    height: 90px;
+}
+
+.home-w {
+    color: aliceblue;
+    margin-left: 3%;
+    margin-top: 3%;
+}
+
+.ma {
+    color: #6e604c;
+    margin-left: 70%;
+}
+
+.wed {
+    color: aliceblue;
+    margin-left: 70%;
+}
+
+.line1 {
+    border: 3px solid white;
+    border-radius: 3px;
+    margin-top: 10%;
+}
+
+.line2 {
+    margin-top: 10%;
+    color: white;
+}
+
+.line {
+    margin-top: 10%;
+}
+
+
+.unit {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/public/images/bg-01.png')no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.bill {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.room_search {
+    text-align: center;
+}
+.ta {
+    border: 2px solid white;
+    border-radius: 70%;
+    border-collapse: collapse;
+    width: 100%;
+}
+.b {
+    font-size: 100%;
+    text-align: center;
+    padding: 8px;
+    /* background-color: white; */
+}
+.t:nth-child(even) {
+    background-color: #f2f2f2;
+    /* background-color: red; */
+}
+.p {
+    font-size: 100%;
+    background-color: white;
+    background-color: #7D7979;
+}
+.home-table-bill {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.home-mar {
+    color: #6D5A3D;
+    text-align: center;
+}
+.home-text-img-text {
+    max-width: 100%;
+}
+.home-img-vs {
+    float: right;
+    height: auto;
+    max-width: 60%;
+    margin-right: -100%;
+    margin-top: -25%;
+}
+.home-vs {
+    width: 40%;
+    height: 40%;
+    text-align: left;
+    margin-left: 10%;
+}
+.home-text-vscode {
+    color: #6D5A3D;
+    text-align: left;
+}
+.home-backgroud3-ocr {
     background: url('/public/images/bg-miter-02.png')no-repeat;
     background-position: center;
     background-size: cover;
-    
-} */
- /* .position{
-    position: fixed;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-} */
-.ta {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .b {
+}
+.home-ocr {
+    width: 50%;
+    height: 50%;
+    margin-left: 6%;
+    margin-top: 10%;
+}
+.home-total-ocr {
+    max-width: 100%;
+    height: auto;
+    margin-left: 10%;
+}
+.home-text-ocr {
+    max-width: 100%;
+    height: 0 auto;
+    color: #6D5A3D;
+}
+.home-text-p-ocr {
+    max-width: 40%;
+    height: 20%;
+    margin-left: 4%;
+    text-align-last: center;
+    text-align: center;
+    /* background-color: red; */
+}
+.home-sql {
+    max-width: 100%;
+    height: 40%;
     text-align: left;
-    padding: 8px;
-  }
-  
-  .t:nth-child(even){background-color: #f2f2f2}
-  
-  .p {
-    background-color: #04AA6D;
-    color: white;
-  }
+    margin-left: 5%;
+}
+.home-text-sql {
+    white-space: normal;
+    text-align: left;
+    margin-left: 60%;
+}
+.home-head-sql {
+    max-width: 100%;
+    height: auto;
+    margin-left: -10%;
+    text-align: left;
+    color: #6D5A3D;
+    /* background-color: red; */
+}
+.home-img-sql {
+    text-align: left;
+    float: left;
+    max-width: 50%;
+    height: auto;
+    margin-left: -120%;
+    margin-top: -25%;
+    /* background-color: red; */
+}
+.home-img-text-sql {
+    text-align: left;
+    float: left;
+    max-width: 100%;
+    height: auto;
+    margin: left 100%;
+}
 
+.home-bg-text-sql {
+    text-align: left;
+    max-width: 100%;
+    height: 0 auto;
+    margin: 0% -10%;
+}
 
- @media only screen and (max-width: 767px) {
-     .img {
-         margin-left: 3%;
-         margin-top: 3%;
-         width: 100px;
-         height: 90px;
-         /* background-color: red; */
-     }
+.home-context {
+    color: #6D5A3D;
+    text-align: center;
+}
+.home-context-tel {
+    background-color: #D9D9D9;
+}
+.home-tel {
+    text-indent: 0%;
+    text-align: center;
+}
+.home-face {
+    margin-left: 5rem;
+    text-align: center;
+}
+.home-line {
+    /* background-color: red; */
+    text-align: center;
+}
+@media only screen and (max-width: 767px) {
+    .home {
+        justify-content: center;
+        align-self: center;
+        max-width: 100%;
+        height: 100%;
+    }
+    .img {
+        margin-left: 3%;
+        margin-top: 3%;
+        width: 100px;
+        height: 90px;
+    }
+    .home-sql {
+        text-align: center;
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 100% auto;
+    }
+    .home-text-sql {
+        max-width: 100%;
+        height: 100%;
+        flex-direction: column;
+        text-align: center;
+    }
+    .home-head-sql {
+        max-width: 500%;
+        margin: 20% 15%;
+        height: 300%;
+        display: flex;
+        justify-content: center;
+        margin-left: -100%;
+    }
+    .home-img-sql {
+        text-align: center;
+        align-items: center;
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        margin: -200% -50%;
+    }
+    .home-bg-text-sql {
+        text-align: center;
+        max-width: 300%;
+        height: 200%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: -10% auto;
+        margin-left: -120%;
+    }
+    .home-vs {
+        text-align: left;
+        max-width: 300%;
+        height: 300%;
+        margin: 100% 10%;
+    }
+    .home-text-vscode {
+        max-width: 600%;
+        text-align: center;
+        margin: -90% -5px;
+        margin-right: -100%;
+    }
+    .home-img-vs {
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        margin: -100% -50%;
+    }
+    .home-text-img-text {
 
-     .marotab {
-         width: 100%;
-         height: 100%;
-         border-radius: 0px 0px 20% 20%;
-         background: url('/public/images/bg-img-2.jpg')no-repeat;
-         background-position: center;
-         background-size: cover;
-         background-color: red;
-     }
+        max-width: 600%;
+        text-align: center;
+        margin: 100% -5px;
+        margin-right: -100%;
+    }
+    .home-text-p-ocr {
+        max-width: 100%;
+        height: 0 auto;
+        margin: 0px -20px;
+        text-align: center;
+    }
+    .home-text-ocr {
+        max-width: 100%;
+        height: 100%;
+        margin: 0px -10px;
+        text-align: center;
+    }
+    .home-backgroud3-ocr {
+        max-width: 100%;
+        height: 100%;
+        background: url('/public/images/bg-miter-02.png')no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .home-ocr {
+        align-items: center;
+        max-width: 100%;
+        height: 100%;
+        margin: 0% 28%;
+        margin-top: 25%;
+    }
+    .ruk {
+        padding-left: calc(100% / 3.5);
+    }
 
-     .ruk {
-         padding-left: calc(100% / 3.5);
-     }
-
- }
+}

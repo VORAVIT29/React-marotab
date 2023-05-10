@@ -13,3 +13,14 @@
     background-position: center;
     background-size: cover;
 }
+@media screen and (max-width: 767px){
+.call-miter-bg-img{
+    
+    text-align: start;
+    background-color: red; 
+    display: flexbox;
+
+}
+
+}
+    
