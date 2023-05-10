@@ -2,7 +2,7 @@
     text-align: end;
 }
 
-.bg-img {
+.tennant-room-bg-img {
     background-image: url("/public/images/bg-tenant-room.png");
     background-position: center;
     background-size: cover;
@@ -14,7 +14,6 @@
 
 
 .title {
-    /* background-color: red; */
     border-radius: 50px;
     border: 3px solid gray;
     padding: 10px;

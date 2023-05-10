@@ -132,7 +132,7 @@ function TenantRoom(props) {
                         <img src='/images/icon_wab.png' alt='icon-web' width="50" />
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body className='bg-img'>
+                <Modal.Body className='tennant-room-bg-img'>
 
                     {/* Show Load */}
                     <SpinerLoad showLoad={showLoad} />
