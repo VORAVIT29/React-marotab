@@ -10,25 +10,8 @@
 
 .btn-pos {
     margin: 0 10px 10px 0;
-    /* animation-name: moveButton; */
-    /* animation-duration: 2s;
-    /* animation-iteration-count: infinite;
-    animation-direction: alternate; */
 }
 
-/* @keyframes moveButton {
-    0% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(100px);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-} */
 
 .title {
     /* background-color: red; */

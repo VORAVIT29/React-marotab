@@ -22,12 +22,12 @@ function Main() {
                         ข้อมูลผู้เช่า
                     </div>
                 </div>
-                <div className="square" id='camara'>
+                <NavLink end to="/Back-End/Camera" className="square" id='camara'>
                     <div className='position-center'>
                         กล้องถ่ายรูป
                     </div>
-                </div>
-                <NavLink end to="/call" className="square">
+                </NavLink>
+                <NavLink end to="/Back-End/Call" className="square">
                     <div className='position-center'>
                         คำนวน
                     </div>

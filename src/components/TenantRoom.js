@@ -82,6 +82,7 @@ function TenantRoom(props) {
     }
 
     function edit(event) {
+        setShowLoad(true);
         const data = { target: JSON.stringify(tenantRoomValue) };
         axios.post('http://127.0.0.1:5000/edit-data-tenantRoom', data)
             .then((response) => {
@@ -91,6 +92,11 @@ function TenantRoom(props) {
             .catch((error) => {
                 alert(error.message);
             })
+            .finally((done) => {
+                setTimeout(() => {
+                    setShowLoad(false);
+                }, 800);
+            });
         event.preventDefault();
     }
 
@@ -101,6 +107,7 @@ function TenantRoom(props) {
             .then((response) => {
                 // console.log(response.data);
                 setTenantRoomValue(interFaceTenantRoom);
+                setIsHideBtn(false);
                 getAPi();
             })
             .catch((error) => { alert(error.message); })

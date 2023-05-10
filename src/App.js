@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Main from './components/Main';
 import CallMiter from './components/CallMiter';
 import ChangePassword from './components/ChangePassword';
+import OpenCamera from './components/OpenCamera';
 
 
 function App() {
@@ -16,9 +17,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 {/* Font End */}
-                {/* <Route path='/' exact element={<Home />} /> */}
                 <Route path='/' exact element={<Home />} />
-                <Route path='/Call' exact element={<CallMiter />} />
 
                 {/* Back End */}
                 <Route path='/Back-End/Main' exact element={<Main />} />
@@ -26,9 +25,11 @@ function App() {
                 <Route path='/Back-End/Register' exact element={<Register />} />
                 <Route path='/Back-End/Forget' exact element={<Forget />} />
                 <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
+                <Route path='/Back-End/Camera' exact element={<OpenCamera />} />
+                <Route path='/Back-End/Call' exact element={<CallMiter />} />
 
                 {/* Error 404 */}
-                {/* <Route path='*' /> */}
+                {/* <Route exact path='*' /> */}
             </Routes>
         </BrowserRouter >
     );
