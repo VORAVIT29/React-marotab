@@ -4,6 +4,7 @@ import { BsExclamationCircle } from "react-icons/bs";
 import interFaceRegister from '../data/DataRegister';
 import axios from "axios";
 import './Register.css'
+import { Connects } from '../data/Connects';
 
 
 function Register() {
@@ -21,7 +22,7 @@ function Register() {
         delete data[firstkey]
         const dataList = { target: JSON.stringify(data), table: 'host' }
         // local
-        axios.post('http://localhost:5000/insert-data', dataList)
+        axios.post(`${Connects.HOST_NAME}/insert-data`, dataList)
             // Google Cloud
             // axios.post('https://marotab-api-python-l5xl7xlxna-as.a.run.app/insert-data', dataList)
             .then((response) => {

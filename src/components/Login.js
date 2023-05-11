@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import './Login.css'
+import { Connects } from '../data/Connects';
 
 function Login() {
     const [values, setValue] = useState({ username: '', password: '' });
@@ -15,7 +16,7 @@ function Login() {
 
     function login(event) {
         // console.log(values);
-        axios.post('http://localhost:5000/check-login', values)
+        axios.post(`${Connects.HOST_NAME}/check-login`, values)
             .then((response) => {
                 const result = response.data.message
                 if (Number(result) > 0)

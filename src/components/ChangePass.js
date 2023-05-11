@@ -1,3 +1,4 @@
+/** ยังไม่ได้ใช้ */
 function ChangePass() {
     return (
         <section>
@@ -15,12 +16,12 @@ function ChangePass() {
                     <button>Submit</button>
                     <div className='change-password'>
                         <p>
-                            <NavLink to="/Back-End/Change-Password">Change Password</NavLink>
+                            {/* <NavLink to="/Back-End/Change-Password">Change Password</NavLink> */}
                         </p>
                     </div>
                     <div className="Login">
                         <p>
-                            <NavLink to="/Back-End/Login">Back to Login</NavLink>
+                            {/* <NavLink to="/Back-End/Login">Back to Login</NavLink> */}
                         </p>
                     </div>
                 </form>

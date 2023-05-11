@@ -10,7 +10,7 @@ function NavBar(props) {
                     <Navbar.Brand href="/">
                         <img
                             alt=""
-                            src="./images/icon_wab.png"
+                            src="/images/icon_wab.png"
                             width="90"
                             // height="30"
                             className="d-inline-block align-top"

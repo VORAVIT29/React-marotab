@@ -1,10 +1,11 @@
 import { Modal, Container, Form, Button, Row, Col } from 'react-bootstrap';
 import interFaceTenantRoom from '../data/DataTenantRoom';
 import { useEffect, useState } from 'react';
+import { Connects } from '../data/Connects';
+import SpinerLoad from './SpinerLoad';
 import { format } from 'date-fns';
 import axios from 'axios';
 import './TenantRoom.css';
-import SpinerLoad from './SpinerLoad';
 
 function TenantRoom(props) {
     const [roomNumber, setRoomNumber] = useState([]);
@@ -13,7 +14,7 @@ function TenantRoom(props) {
     const [showLoad, setShowLoad] = useState(true);
 
     function getAPi() {
-        axios.get('http://127.0.0.1:5000/all-data/status_room')
+        axios.get(`${Connects.HOST_NAME}/all-data/status_room`)
             .then((response) => {
                 setRoomNumber(response.data);
             })
@@ -39,7 +40,7 @@ function TenantRoom(props) {
 
     function findDataByid(event) {
         const { name, value } = event.target;
-        axios.get('http://127.0.0.1:5000/find-data-tenant-byIdNumber/' + value)
+        axios.get(`${Connects.HOST_NAME}/find-data-tenant-byIdNumber/${value}`)
             .then((response) => {
                 const data_result = response.data.result[0];
                 const status = response.data.status;
@@ -65,7 +66,7 @@ function TenantRoom(props) {
         const firstkey = Object.keys(tenantRoomValue)[0];
         delete tenantRoomValue[firstkey];
         const data = { target: JSON.stringify(tenantRoomValue), table: "Tenant_registration" };
-        axios.post('http://127.0.0.1:5000/insert-data', data)
+        axios.post(`${Connects.HOST_NAME}/insert-data`, data)
             .then((response) => {
                 console.log(response.data.status);
             })
@@ -84,7 +85,7 @@ function TenantRoom(props) {
     function edit(event) {
         setShowLoad(true);
         const data = { target: JSON.stringify(tenantRoomValue) };
-        axios.post('http://127.0.0.1:5000/edit-data-tenantRoom', data)
+        axios.post(`${Connects.HOST_NAME}/edit-data-tenantRoom`, data)
             .then((response) => {
                 // const status = response.data.status;
                 // console.log(response.data);
@@ -103,7 +104,7 @@ function TenantRoom(props) {
     function deleteData() {
         setShowLoad(true);
         const data = { target: JSON.stringify(tenantRoomValue) };
-        axios.post('http://127.0.0.1:5000/delete-tenantRoom', data)
+        axios.post(`${Connects.HOST_NAME}/delete-tenantRoom`, data)
             .then((response) => {
                 // console.log(response.data);
                 setTenantRoomValue(interFaceTenantRoom);

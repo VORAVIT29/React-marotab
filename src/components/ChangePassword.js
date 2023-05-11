@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Connects } from '../data/Connects';
 import axios from 'axios';
 import './ChangePassword.css';
 
@@ -8,8 +9,8 @@ function ChangePassword() {
     const [element, setElement] = useState({});
 
     function submit(event) {
-        console.log(element);
-        axios.post('http://localhost:5000/change-forget-password', element)
+        // console.log(element);
+        axios.post(`${Connects.HOST_NAME}/change-forget-password`, element)
             .then((response) => {
                 console.log(response.data);
             })

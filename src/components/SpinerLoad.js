@@ -5,18 +5,15 @@ function SpinerLoad(props) {
     const { showLoad } = props;
     return (
         <>
-            {showLoad ?
-                <>
-                    <div className='bg-load-spiner'>
-                        {/* Loading... */}
-                        <div className='load-spiner'>
-                            <Spinner animation="border" variant="secondary" />&nbsp;&nbsp;
-                            กำลังโหลด...
-                        </div>
+            {showLoad && (
+                <div className='bg-load-spiner'>
+                    {/* Loading... */}
+                    <div className='load-spiner'>
+                        <Spinner animation="border" variant="secondary" />&nbsp;&nbsp;
+                        กำลังโหลด...
                     </div>
-                </>
-                : ''
-            }
+                </div>
+            )}
         </>
     )
 }
