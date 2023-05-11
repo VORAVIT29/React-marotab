@@ -27,7 +27,7 @@ function Main() {
                         กล้องถ่ายรูป
                     </div>
                 </NavLink>
-                <NavLink end to="/Back-End/Call" className="square">
+                <NavLink end to="/Back-End/Call" className="square" id="call">
                     <div className='position-center'>
                         คำนวน
                     </div>
