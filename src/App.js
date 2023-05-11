@@ -8,9 +8,7 @@ import Home from './components/Home';
 import Main from './components/Main';
 import CallMiter from './components/CallMiter';
 import ChangePassword from './components/ChangePassword';
-import OpenCamera from './components/OpenCamera';
-import Camera from 'react-html5-camera-photo';
-import { Camerapage } from './components/Camerapage';
+import { CameraPage } from './components/CameraPage';
 
 function App() {
     return (
@@ -26,7 +24,7 @@ function App() {
                 <Route path='/Back-End/Register' exact element={<Register />} />
                 <Route path='/Back-End/Forget' exact element={<Forget />} />
                 <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
-                <Route path='/Back-End/Camera' exact element={<Camerapage/>} />
+                <Route path='/Back-End/Camera' exact element={<CameraPage />} />
                 <Route path='/Back-End/Call' exact element={<CallMiter />} />
 
                 {/* Error 404 */}
