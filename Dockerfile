@@ -2,19 +2,16 @@
 # https://hub.docker.com/_/node
 FROM node:14
 
-# Allow statements and log messages to immediately appear in the Knative logs
-ENV NODE_ENV production
-
 # Copy local code to the container image.
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
+WORKDIR /app
 
-# Install production dependencies.
-RUN npm install --only=production
+COPY package*.json .
+RUN npm install
+COPY . .
 
-# Build the React app
 RUN npm run build
 
-# Run the web service on container startup.
-CMD ["npm", "start"]
+FROM nginx:1.19
+
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --form=build /app/build /user/share/nginx/html

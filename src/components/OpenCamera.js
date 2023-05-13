@@ -33,6 +33,7 @@ function OpenCamera(props) {
                     idealFacingMode={FACING_MODES.USER}
                     isSilentMode={true}
                     onTakePhoto={handleTakePhoto}
+                    isImageMirror={false}
                 />
             )}
 
