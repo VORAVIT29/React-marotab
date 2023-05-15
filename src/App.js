@@ -12,25 +12,28 @@ import { CameraPage } from './components/CameraPage';
 
 function App() {
     return (
-        // Router
-        <BrowserRouter>
-            <Routes>
-                {/* Font End */}
-                <Route path='/' exact element={<Home />} />
+        <>
+        Hello
+            {/* Router */}
+            <BrowserRouter>
+                <Routes>
+                    {/* Font End */}
+                    <Route path='/' exact element={<Home />} />
 
-                {/* Back End */}
-                <Route path='/Back-End/Main' exact element={<Main />} />
-                <Route path='/Back-End/Login' exact element={<Login />} />
-                <Route path='/Back-End/Register' exact element={<Register />} />
-                <Route path='/Back-End/Forget' exact element={<Forget />} />
-                <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
-                <Route path='/Back-End/Camera' exact element={<CameraPage />} />
-                <Route path='/Back-End/Call' exact element={<CallMiter />} />
+                    {/* Back End */}
+                    <Route path='/Back-End/Main' exact element={<Main />} />
+                    <Route path='/Back-End/Login' exact element={<Login />} />
+                    <Route path='/Back-End/Register' exact element={<Register />} />
+                    <Route path='/Back-End/Forget' exact element={<Forget />} />
+                    <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
+                    <Route path='/Back-End/Camera' exact element={<CameraPage />} />
+                    <Route path='/Back-End/Call' exact element={<CallMiter />} />
 
-                {/* Error 404 */}
-                {/* <Route exact path='*' /> */}
-            </Routes>
-        </BrowserRouter >
+                    {/* Error 404 */}
+                    {/* <Route exact path='*' /> */}
+                </Routes>
+            </BrowserRouter >
+        </>
     );
 }
 
