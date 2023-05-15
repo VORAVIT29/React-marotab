@@ -40,7 +40,7 @@ export const CameraPage = () => {
 
   return (
     <>
-      <NavBar name="กรุณาถ่ายรูป" />
+      <NavBar name="��سҶ����ٻ" />
       <SpinerLoad showLoad={showLoad} />
 
 
