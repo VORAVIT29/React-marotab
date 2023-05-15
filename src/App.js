@@ -13,7 +13,7 @@ import { CameraPage } from './components/CameraPage';
 function App() {
     return (
         <>
-        Hello
+            {/* Hello */}
             {/* Router */}
             <BrowserRouter>
                 <Routes>

@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { Connects } from '../data/Connects';
 import { useState } from 'react';
 import axios from 'axios';
 import './Login.css'
-import { Connects } from '../data/Connects';
 
 function Login() {
     const [values, setValue] = useState({ username: '', password: '' });
@@ -18,7 +18,7 @@ function Login() {
         // console.log(values);
         axios.post(`${Connects.HOST_NAME}/check-login`, values)
             .then((response) => {
-                const result = response.data.message
+                const result = response.data.result
                 if (Number(result) > 0)
                     setIsRedirect(true);
             })
