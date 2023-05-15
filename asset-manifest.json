@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/React-marotab/static/css/main.dd527ae4.css",
+    "main.js": "/React-marotab/static/js/main.808b75a5.js",
+    "static/js/787.3d970abb.chunk.js": "/React-marotab/static/js/787.3d970abb.chunk.js",
+    "static/media/bg-01.png": "/React-marotab/static/media/bg-01.330e90bcb4c6ff2e4bbc.png",
+    "static/media/bg-miter-02.png": "/React-marotab/static/media/bg-miter-02.f48cbf10aa10601f3ed9.png",
+    "static/media/bg-tenant-room.png": "/React-marotab/static/media/bg-tenant-room.962aee352253aa4690fa.png",
+    "static/media/bg-Callmiter.png": "/React-marotab/static/media/bg-Callmiter.1c5ea87e0011a8d728a5.png",
+    "static/media/camara.png": "/React-marotab/static/media/camara.9cd81ad2ef689fde2ebd.png",
+    "static/media/tenant-room.png": "/React-marotab/static/media/tenant-room.877a4e72aa230c7478b2.png",
+    "static/media/bg-img-2.jpg": "/React-marotab/static/media/bg-img-2.b2eba68e86a59c00dd49.jpg",
+    "static/media/call-fiter.png": "/React-marotab/static/media/call-fiter.939cce904f6dc1d49ba9.png",
+    "index.html": "/React-marotab/index.html",
+    "main.dd527ae4.css.map": "/React-marotab/static/css/main.dd527ae4.css.map",
+    "main.808b75a5.js.map": "/React-marotab/static/js/main.808b75a5.js.map",
+    "787.3d970abb.chunk.js.map": "/React-marotab/static/js/787.3d970abb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd527ae4.css",
+    "static/js/main.808b75a5.js"
+  ]
+}
