@@ -46,6 +46,7 @@ export const CameraPage = () => {
 
   return (
     <>
+
       <SpinerLoad showLoad={showLoad} />
 
       {/* Page Camera */}
@@ -73,6 +74,7 @@ export const CameraPage = () => {
       {isOpencamera && (
         <OpenCamera target={setDataImg} />
       )}
+
     </>
   )
 }
