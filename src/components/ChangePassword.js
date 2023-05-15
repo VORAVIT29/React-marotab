@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Connects } from '../data/Connects';
 import axios from 'axios';
@@ -7,12 +7,18 @@ import './ChangePassword.css';
 function ChangePassword() {
     const location = useLocation();
     const [element, setElement] = useState({});
+    const [isRedirect, setIsRedirect] = useState(false);
+    const nav = useNavigate();
 
     function submit(event) {
         // console.log(element);
         axios.post(`${Connects.HOST_NAME}/change-forget-password`, element)
             .then((response) => {
-                console.log(response.data);
+                const status = response.data.status;
+                if (status === 'success')
+                    setIsRedirect(true);
+                // console.log(response.data);
+
             })
             .catch((error) => {
                 console.log(error.message);
@@ -24,6 +30,10 @@ function ChangePassword() {
         const { name, value } = event.target;
         setElement({ ...element, [name]: value });
     }
+
+    // render url patch
+    if (isRedirect)
+        nav("/Back-End/Login")
 
     useEffect(() => {
         setElement(location.state);
