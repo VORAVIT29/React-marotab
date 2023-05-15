@@ -15,7 +15,7 @@ function ChangePassword() {
         axios.post(`${Connects.HOST_NAME}/change-forget-password`, element)
             .then((response) => {
                 const status = response.data.status;
-                if (status === 'success')
+                if (status === 'Success')
                     setIsRedirect(true);
                 // console.log(response.data);
 
