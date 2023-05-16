@@ -1,7 +1,7 @@
 import Camera, { FACING_MODES } from 'react-html5-camera-photo';
 import { Button, Image, Modal } from 'react-bootstrap';
 import 'react-html5-camera-photo/build/css/index.css';
-import { BsFillCameraFill } from "react-icons/bs";
+import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat } from "react-icons/bs";
 import React, { useState } from 'react';
 
 function OpenCamera(props) {
@@ -29,13 +29,20 @@ function OpenCamera(props) {
     return (
         <>
             {cameraActive && (
-                <Camera
-                    imageCompression={0.97}
-                    idealFacingMode={facingMode}
-                    isSilentMode={true}
-                    onTakePhoto={handleTakePhoto}
-                    isImageMirror={false}
-                />
+                <>
+                    <Camera
+                        imageCompression={0.97}
+                        idealFacingMode={facingMode}
+                        isSilentMode={true}
+                        onTakePhoto={handleTakePhoto}
+                        isImageMirror={false}
+                    />
+                    <center>
+                        <Button variant='secondary'>
+                            <BsPhoneFlip />
+                        </Button>
+                    </center>
+                </>
             )}
 
             {tempImg.img64 && (
@@ -57,9 +64,9 @@ function OpenCamera(props) {
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="light" onClick={close}>Cancle</Button>
-                        <Button variant="dark" onClick={() => setOpenModel(!openModel)}>Again</Button>
-                        <Button variant="secondary" onClick={SubmitImg}>Submit</Button>
+                        <Button variant="outline-dark" onClick={close}><BsPower /></Button>
+                        <Button variant="secondary" onClick={() => setOpenModel(!openModel)}><BsRepeat /> Again</Button>
+                        <Button variant="success" onClick={SubmitImg}><BsCheck2Circle /> Submit</Button>
                     </Modal.Footer>
                 </Modal>
             )}

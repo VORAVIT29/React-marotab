@@ -1,4 +1,4 @@
-import { BsFillCameraFill } from "react-icons/bs";
+import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill } from "react-icons/bs";
 import { Button, Image, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { BiImageAdd } from "react-icons/bi";
 import { useEffect, useState } from "react";
@@ -80,55 +80,72 @@ export const CameraPage = () => {
           </Row>
 
           <br />
+          {/* <Row md={4}>
+            <Form.Group as={Row} className="mb-1" >
+              <Col style={{ width: "auto" }}>
+                <p>
+                  สัญลักษณ์ <strong> &#x2713;</strong> : มีการจองห้องแล้ว
+                </p>
+              </Col>
+            </Form.Group>
+          </Row> */}
           <Row mb={4} className="justify-content-md-center">
-            <Col xs lg="2">
-              <Form.Group controlId="formGridState">
-                <Form.Select name='room_number'>
-                  {/* onChange={findDataByid} */}
-                  <option value="0" >-- เลือกห้อง --</option>
-                  {roomNumber.map((dataList, index) => {
-                    return (
-                      dataList.status && (
-                        <option key={index} value={dataList.id} >
-                          {dataList.room_number}
-                        </option>
-                      )
-                    )
-                  })}
-                </Form.Select>
-              </Form.Group >
 
-            </Col>
-            <Col xs lg="2">
-              <Form.Group controlId="formGridState">
+            <Form.Group as={Row} className="mb-1">
+
+              <Col md="3" className="mb-2" xs>
                 <InputGroup className="mb-2">
-                  <Form.Control disabled value="0" />
+                  <InputGroup.Text id="basic-addon1"><BsBuildingFill /></InputGroup.Text>
+                  <Form.Select name='room_number'>
+                    {/* onChange={findDataByid} */}
+                    <option value="0" >-- เลือกห้อง --</option>
+                    {roomNumber.map((dataList, index) => {
+                      return (
+                        dataList.status && (
+                          <option key={index} value={dataList.id} >
+                            {dataList.room_number}
+                          </option>
+                        )
+                      )
+                    })}
+                  </Form.Select>
                 </InputGroup>
-              </Form.Group>
-            </Col>
-            <Col xs lg="6" style={{ display: "" }} >
-              <Button onClick={save}>scan</Button>
-            </Col>
-            <Col xs lg="6" style={{ display: "" }} >
-              <Button onClick={save}>Save</Button>
-            </Col>
-            {/* <Row className="mb-6 justify-content-md-left">
-              <Col xs lg="6" style={{ display: "" }} >
-                <Button onClick={save}>scan</Button>
               </Col>
-              <Col xs lg="6" style={{ display: "" }} >
-                <Button onClick={save}>Save</Button>
+              <Col md="5" className="mb-2">
+                <InputGroup className="mb-3">
+                  <Form.Control
+                    disabled
+                    placeholder="Recipient's username"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                  />
+                  <Button variant="light" onClick={save}>
+                    <BsPersonBoundingBox />
+                    &nbsp;
+                    Scan
+                  </Button>
+                </InputGroup>
               </Col>
-            </Row> */}
+              <Col md="2" xs style={{ width: "auto" }} className="mb-2">
+                <Button variant="secondary" onClick={save} >
+                  <BsSave />
+                  &nbsp;
+                  Save
+                </Button>
+              </Col>
+            </Form.Group >
+
           </Row>
 
+        </center >
+      )}
 
-        </center>
-      )}
       {/* Page open camera */}
-      {isOpencamera && (
-        <OpenCamera target={setDataImg} />
-      )}
+      {
+        isOpencamera && (
+          <OpenCamera target={setDataImg} />
+        )
+      }
 
     </>
   )
