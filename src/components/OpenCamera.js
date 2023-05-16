@@ -28,7 +28,7 @@ function OpenCamera(props) {
 
     function changeCamera() {
         setFacingMode(
-            facingMode.toLocaleLowerCase() === 'user' ?
+            facingMode.toLocaleLowerCase() !== 'user' ?
                 FACING_MODES.USER :
                 FACING_MODES.ENVIRONMENT
         );
