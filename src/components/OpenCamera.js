@@ -26,6 +26,14 @@ function OpenCamera(props) {
         props.target({ status: 'close' });
     }
 
+    function changeCamera() {
+        setFacingMode(
+            facingMode.toLocaleLowerCase() === 'user' ?
+                FACING_MODES.USER :
+                FACING_MODES.ENVIRONMENT
+        );
+    }
+
     return (
         <>
             {cameraActive && (
@@ -38,7 +46,7 @@ function OpenCamera(props) {
                         isImageMirror={false}
                     />
                     <center>
-                        <Button variant='secondary'>
+                        <Button variant='secondary' onClick={changeCamera}>
                             <BsPhoneFlip />
                         </Button>
                     </center>
