@@ -13,12 +13,12 @@ import { CameraPage } from './components/CameraPage';
 function App() {
     return (
         <>
-            {/* <center>Hello</center> */}
             {/* Router */}
             <BrowserRouter>
                 <Routes>
                     {/* Font End */}
                     <Route path='/' exact element={<Home />} />
+                    {/* <Route path='/' exact element={<Main />} /> */}
 
                     {/* Back End */}
                     <Route path='/Back-End/Main' exact element={<Main />} />

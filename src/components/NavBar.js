@@ -20,7 +20,7 @@ function NavBar(props) {
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            {name}
+                            <strong>{name}</strong>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>

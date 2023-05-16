@@ -8,6 +8,7 @@ function OpenCamera(props) {
     const [tempImg, setTempImg] = useState({ 'img64': null });
     const [openModel, setOpenModel] = useState(false);
     const [cameraActive, setCameraActive] = useState(true);
+    const [facingMode, setFacingMode] = useState(FACING_MODES.ENVIRONMENT);
 
 
     function handleTakePhoto(dataUri) {
@@ -30,7 +31,7 @@ function OpenCamera(props) {
             {cameraActive && (
                 <Camera
                     imageCompression={0.97}
-                    idealFacingMode={FACING_MODES.USER}
+                    idealFacingMode={facingMode}
                     isSilentMode={true}
                     onTakePhoto={handleTakePhoto}
                     isImageMirror={false}
