@@ -45,7 +45,7 @@ function OpenCamera(props) {
                         onTakePhoto={handleTakePhoto}
                         isImageMirror={false}
                     />
-                    <center>
+                    <center style={{ margin: "10px" }}>
                         <Button variant='secondary' onClick={changeCamera}>
                             <BsPhoneFlip />
                         </Button>

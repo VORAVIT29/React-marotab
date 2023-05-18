@@ -77,7 +77,7 @@ function Register() {
                         <input type="text" required name='admin_password' defaultValue={data.admin_password} maxLength={3} />
                         <label for="">Password Admin</label>
                     </div>
-                    <span className='icon'><BsExclamationCircle /> <font size='2'>รหัสนี้มีไว้เพื่อ ตอนลืมรหัสผ่านการุณาจำ</font></span>
+                    <span className='icon'><BsExclamationCircle /> <font size='2'>โปรดจำรหัสสำรอง กรณีลืมรหัสผ่าน</font></span>
                     <div className="inputbox">
                         <input type="text" required name='username' defaultValue={data.username} onChange={handleChange} />
                         <label for="">Username</label>

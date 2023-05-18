@@ -1,5 +1,5 @@
-import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill } from "react-icons/bs";
-import { Button, Image, Row, Col, Form, InputGroup } from "react-bootstrap";
+import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill, BsSearch } from "react-icons/bs";
+import { Button, Image, Row, Col, Form, InputGroup, Container } from "react-bootstrap";
 import { BiImageAdd } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { dataImg } from '../data/DataImg';
@@ -32,6 +32,25 @@ export const CameraPage = () => {
       });
   }
 
+  async function imgToTextAPI(img64) {
+    setShowLoad(true);
+    axios.post(`${Connects.HOST_NAME}/img-to-text`, { 'url_img': img64 })
+      .then((response) => {
+        const status = response.data.status;
+        const result = response.data.result;
+        if (status.toLowerCase() === 'success') {
+          const formatNumber = result.replace(/(\d{4})(\d+)/, "$1.$2")
+          setImg({ ...img, 'unit_present': formatNumber });
+        }
+      })
+      .catch((error) => {
+        console.error(error.message);
+      })
+      .finally(() => {
+        setShowLoad(false);
+      });
+  }
+
   function setPage() {
     // Page open camera
     setIsOpencamera(!isOpencamera);
@@ -39,105 +58,152 @@ export const CameraPage = () => {
     setIsPageCamera(!isPageCamera);
   }
 
-  function setDataImg(dataFromChild) {
+  async function setDataImg(dataFromChild) {
     const target = dataFromChild;
-    // console.log(target);
-    target.status === 'submit' && setImg({ ...img, 'img64': target.img64 });
-    setPage();
+    target.status === 'submit' && setImg({ ...img, 'piture': target.img64 });
+    await setPage();
+  }
+
+  function selectRoomNumber(event) {
+    const { value, name } = event.target;
+    setImg({ ...img, [name]: value });
+  }
+
+  function findDataImgByRoomNumber(roomNumber) {
+    setShowLoad(true);
+    axios.get(`${Connects.HOST_NAME}/find-dataImg-byRoomnumber/${roomNumber}`)
+      .then((response) => {
+        // console.log(response.data);
+        const status = response.data.status;
+        const result = response.data.result;
+        if (status.toLowerCase() === 'success')
+          setImg(result);
+        else if (status.toLowerCase() === 'empty') {
+          setImg({ ...dataImg, 'room_number': img.room_number });
+        }
+      })
+      .catch((error) => { console.error(error.message); })
+      .finally(() => { setShowLoad(false); })
   }
 
   function save() {
-    console.log(img);
+    // console.log(img);
+    const count = Object.keys(img).length;
+    // delete key id
+    (count === 5) && delete img[Object.keys(img)[0]];
+    const data = { target: JSON.stringify(img), table: 'camera_capture_unit' };
+    axios.post(`${Connects.HOST_NAME}/save-img`, data)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  }
+
+  function editUnitPresent(event) {
+    const { value, name } = event.target;
+    const formatNumber = value.replace(/(\d{4})(\d+)/, "$1.$2");
+    setImg({ ...img, [name]: formatNumber });
   }
 
   useEffect(() => {
     setTimeout(() => {
-      setShowLoad(false);
       getAPi();
+      setShowLoad(false);
     }, 800);
   }, [])
 
   return (
     <>
-      <NavBar name="การุณาถ่ายรูป" />
+      <NavBar name="ถ่ายรูปหน้าปัดมิเตอร์" />
       <SpinerLoad showLoad={showLoad} />
 
 
       {/* Page Camera */}
       {isPageCamera && (
-        <center className="camera">
-          <Row md={4} className="justify-content-md-center">
-            <Col>
-              {img.img64
-                ?
-                <Image src={img.img64} fluid />
-                :
-                <BiImageAdd size={500} />
-              }
-              <Button variant="dark" onClick={setPage} style={{ margin: "10%" }}><BsFillCameraFill /></Button>
-              <br />
-            </Col>
-          </Row>
+        <>
+          <Container>
+            <Row md={4} className="justify-content-md-center">
+              <Col md="8" className="mb-2">
 
-          <br />
-          {/* <Row md={4}>
-            <Form.Group as={Row} className="mb-1" >
-              <Col style={{ width: "auto" }}>
-                <p>
-                  สัญลักษณ์ <strong> &#x2713;</strong> : มีการจองห้องแล้ว
-                </p>
+                <center>
+                  {/* className="camera" */}
+                  {img.piture
+                    ?
+                    <Image src={img.piture} fluid style={{borderRadius:"10px"}}/>
+                    :
+                    <BiImageAdd size={450} />
+                  }
+                  <Button variant="dark" onClick={setPage} style={{ margin: "3%" }}><BsFillCameraFill /></Button>
+                </center >
+
               </Col>
-            </Form.Group>
-          </Row> */}
-          <Row mb={4} className="justify-content-md-center">
 
-            <Form.Group as={Row} className="mb-1">
+              <Col md="4" className="mb-2 bg-container">
 
-              <Col md="3" className="mb-2" xs>
-                <InputGroup className="mb-2">
-                  <InputGroup.Text id="basic-addon1"><BsBuildingFill /></InputGroup.Text>
-                  <Form.Select name='room_number'>
-                    {/* onChange={findDataByid} */}
-                    <option value="0" >-- เลือกห้อง --</option>
-                    {roomNumber.map((dataList, index) => {
-                      return (
-                        dataList.status && (
-                          <option key={index} value={dataList.id} >
-                            {dataList.room_number}
-                          </option>
-                        )
-                      )
-                    })}
-                  </Form.Select>
-                </InputGroup>
+                <Row md={4} className="justify-content-md-center">
+                  <Col md="12" className="mb-2" >
+                    <Form.Label><BsBuildingFill /> เลือกห้อง</Form.Label>
+                    <InputGroup className="mb-2">
+                      <Form.Select name='room_number' defaultValue={img.room_number} onChange={selectRoomNumber}>
+                        <option value="0" >-- เลือกห้อง --</option>
+                        {roomNumber.map((dataList, index) => {
+                          return (
+                            dataList.status && (
+                              <option key={index} value={dataList.id} >
+                                {dataList.room_number}
+                              </option>
+                            )
+                          )
+                        })}
+                      </Form.Select>
+                      <Button variant="light" onClick={() => findDataImgByRoomNumber(img.room_number)} >
+                        <BsSearch />
+                        &nbsp;
+                        Search...
+                      </Button>
+                    </InputGroup>
+                  </Col>
+                </Row>
+
+                <Row mb={4} >
+                {/* className="justify-content-md-center" */}
+
+                  {/* <Form.Group as={Row} className="mb-1"> */}
+                  <Col md="12" className="mb-2">
+                    <Form.Label><BsPersonBoundingBox /> ผลการแสกน</Form.Label>
+                    <InputGroup className="mb-3">
+                      <Form.Control
+                        type="text"
+                        placeholder="0"
+                        maxLength={6}
+                        name="unit_present"
+                        value={img.unit_present}
+                        onChange={editUnitPresent}
+                      />
+                      <Button variant="light" onClick={() => { imgToTextAPI(img.piture) }}>
+                        <BsPersonBoundingBox />
+                        &nbsp;
+                        Scan
+                      </Button>
+                    </InputGroup>
+                  </Col>
+                  <Col md="12" className="mb-2">
+                    <Button variant="secondary" onClick={save} >
+                      <BsSave />
+                      &nbsp;
+                      Save
+                    </Button>
+                  </Col>
+                  {/* </Form.Group > */}
+
+                </Row>
+
               </Col>
-              <Col md="5" className="mb-2">
-                <InputGroup className="mb-3">
-                  <Form.Control
-                    disabled
-                    placeholder="Recipient's username"
-                    aria-label="Recipient's username"
-                    aria-describedby="basic-addon2"
-                  />
-                  <Button variant="light" onClick={save}>
-                    <BsPersonBoundingBox />
-                    &nbsp;
-                    Scan
-                  </Button>
-                </InputGroup>
-              </Col>
-              <Col md="2" xs style={{ width: "auto" }} className="mb-2">
-                <Button variant="secondary" onClick={save} >
-                  <BsSave />
-                  &nbsp;
-                  Save
-                </Button>
-              </Col>
-            </Form.Group >
-
-          </Row>
-
-        </center >
+            </Row>
+          </Container>
+        </>
       )}
 
       {/* Page open camera */}

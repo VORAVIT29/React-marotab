@@ -29,7 +29,7 @@ function Main() {
                 </NavLink>
                 <NavLink end to="/Back-End/Call" className="square" id="call">
                     <div className='position-center'>
-                        คำนวน
+                        คำนวณ
                     </div>
                 </NavLink>
             </div>
