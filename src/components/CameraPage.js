@@ -1,5 +1,5 @@
 import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill, BsSearch } from "react-icons/bs";
-import { Button, Image, Row, Col, Form, InputGroup, Container } from "react-bootstrap";
+import { Button, Image, Row, Col, Form, InputGroup, Container, ProgressBar } from "react-bootstrap";
 import { BiImageAdd } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { dataImg } from '../data/DataImg';
@@ -12,6 +12,7 @@ import { Connects } from "../data/Connects";
 
 export const CameraPage = () => {
   const [img, setImg] = useState(dataImg);
+  const [confidencePercentage, setConfidencePercentage] = useState(Number);
   const [isOpencamera, setIsOpencamera] = useState(false);
   const [isPageCamera, setIsPageCamera] = useState(true);
   const [showLoad, setShowLoad] = useState(true);
@@ -39,8 +40,10 @@ export const CameraPage = () => {
         const status = response.data.status;
         const result = response.data.result;
         if (status.toLowerCase() === 'success') {
-          const formatNumber = result.replace(/(\d{4})(\d+)/, "$1.$2")
+          console.log(result);
+          const formatNumber = result.texts.replace(/(\d{4})(\d+)/, "$1.$2")
           setImg({ ...img, 'unit_present': formatNumber });
+          setConfidencePercentage(result.confidences);
         }
       })
       .catch((error) => {
@@ -189,6 +192,9 @@ export const CameraPage = () => {
                       </Button>
                     </InputGroup>
                   </Col>
+                  <Col md="12" className="mb-3">
+                    <ProgressBar variant="success" now={confidencePercentage} label={`${confidencePercentage}%`} />
+                  </Col>
                   <Col md="12" className="mb-2">
                     <Button variant="secondary" onClick={save} >
                       <BsSave />
@@ -201,7 +207,7 @@ export const CameraPage = () => {
                   </Col>
                   <Col md="12" className="mt-2">
                     <center>
-                      <span><i> *ภาพตัวอย่างในการถ่าย</i></span>
+                      <span><i>*ภาพตัวอย่างในการถ่าย</i></span>
                     </center>
                   </Col>
                   {/* </Form.Group > */}
