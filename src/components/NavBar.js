@@ -19,14 +19,14 @@ function NavBar(props) {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#features">Home</Nav.Link>
-                            <Nav.Link href="#pricing">Main</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/Back-End/Main">Main</Nav.Link>
                             <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">ข้อมูลผู้เช่า</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
+                                <NavDropdown.Item href="/Back-End/Main">ข้อมูลผู้เช่า</NavDropdown.Item>
+                                <NavDropdown.Item href="/Back-End/Camera">
                                     กล้องถ่ายรูป
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">คำนวณ</NavDropdown.Item>
+                                <NavDropdown.Item href="/Back-End/Call">คำนวณ</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">
                                     Logout

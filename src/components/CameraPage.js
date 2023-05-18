@@ -1,6 +1,5 @@
-import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill, BsSearch } from "react-icons/bs";
+import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill, BsSearch, BsCardImage } from "react-icons/bs";
 import { Button, Image, Row, Col, Form, InputGroup, Container, ProgressBar } from "react-bootstrap";
-import { BiImageAdd } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { dataImg } from '../data/DataImg';
 import OpenCamera from "./OpenCamera";
@@ -9,10 +8,13 @@ import NavBar from './NavBar';
 import "./CameraPage.css";
 import axios from "axios";
 import { Connects } from "../data/Connects";
+import { ToastAlert } from "./ToastAlert";
 
 export const CameraPage = () => {
   const [img, setImg] = useState(dataImg);
   const [confidencePercentage, setConfidencePercentage] = useState(Number);
+  const [ShowAlert, setShowAlert] = useState(false);
+  const [detailToast, setDetailToast] = useState({ 'status': '', 'result': '' });
   const [isOpencamera, setIsOpencamera] = useState(false);
   const [isPageCamera, setIsPageCamera] = useState(true);
   const [showLoad, setShowLoad] = useState(true);
@@ -25,6 +27,8 @@ export const CameraPage = () => {
       })
       .catch((error) => {
         console.log(error.message);
+        setShowAlert(true);
+        setDetailToast({ 'status': 'Danger', 'result': error.message })
       })
       .finally((done) => {
         setTimeout(() => {
@@ -33,14 +37,13 @@ export const CameraPage = () => {
       });
   }
 
-  async function imgToTextAPI(img64) {
+  function imgToTextAPI(img64) {
     setShowLoad(true);
     axios.post(`${Connects.HOST_NAME}/img-to-text`, { 'url_img': img64 })
       .then((response) => {
         const status = response.data.status;
         const result = response.data.result;
         if (status.toLowerCase() === 'success') {
-          console.log(result);
           const formatNumber = result.texts.replace(/(\d{4})(\d+)/, "$1.$2")
           setImg({ ...img, 'unit_present': formatNumber });
           setConfidencePercentage(result.confidences);
@@ -48,6 +51,8 @@ export const CameraPage = () => {
       })
       .catch((error) => {
         console.error(error.message);
+        setShowAlert(true);
+        setDetailToast({ 'status': 'Danger', 'result': error.message })
       })
       .finally(() => {
         setShowLoad(false);
@@ -72,35 +77,39 @@ export const CameraPage = () => {
     setImg({ ...img, [name]: value });
   }
 
-  function findDataImgByRoomNumber(roomNumber) {
+  async function findDataImgByRoomNumber(roomNumber) {
     setShowLoad(true);
     axios.get(`${Connects.HOST_NAME}/find-dataImg-byRoomnumber/${roomNumber}`)
       .then((response) => {
-        // console.log(response.data);
         const status = response.data.status;
         const result = response.data.result;
-        if (status.toLowerCase() === 'success')
+        if (status.toLowerCase() === 'success') {
           setImg(result);
+        }
         else if (status.toLowerCase() === 'empty') {
           setImg({ ...dataImg, 'room_number': img.room_number });
+          setConfidencePercentage(0);
         }
       })
-      .catch((error) => { console.error(error.message); })
+      .catch((error) => { console.error(error.message); setShowAlert(true); setDetailToast({ 'status': 'Danger', 'result': error.message }) })
       .finally(() => { setShowLoad(false); })
+
   }
 
   function save() {
-    // console.log(img);
-    const count = Object.keys(img).length;
-    // delete key id
-    (count === 5) && delete img[Object.keys(img)[0]];
     const data = { target: JSON.stringify(img), table: 'camera_capture_unit' };
     axios.post(`${Connects.HOST_NAME}/save-img`, data)
       .then((response) => {
-        console.log(response.data);
+        const status = response.data.status;
+        const result = response.data.result;
+        // set alert toast
+        setShowAlert(!ShowAlert);
+        setDetailToast({ 'status': status, 'result': result })
       })
       .catch((error) => {
         console.error(error.message);
+        setShowAlert(true);
+        setDetailToast({ 'status': 'Danger', 'result': error.message })
       });
   }
 
@@ -123,6 +132,8 @@ export const CameraPage = () => {
       <SpinerLoad showLoad={showLoad} />
 
 
+      <ToastAlert alert={ShowAlert} toast={detailToast} close={() => setShowAlert(false)} />
+
       {/* Page Camera */}
       {isPageCamera && (
         <>
@@ -136,7 +147,7 @@ export const CameraPage = () => {
                     ?
                     <Image src={img.piture} fluid style={{ borderRadius: "10px" }} />
                     :
-                    <BiImageAdd size={450} />
+                    <BsCardImage size={450} style={{ opacity: '0.4' }} />
                   }
                   <Button variant="dark" onClick={setPage} style={{ margin: "3%" }}><BsFillCameraFill /></Button>
                 </center >
@@ -185,7 +196,7 @@ export const CameraPage = () => {
                         value={img.unit_present}
                         onChange={editUnitPresent}
                       />
-                      <Button variant="light" onClick={() => { imgToTextAPI(img.piture) }}>
+                      <Button variant="light" onClick={() => { imgToTextAPI(img.piture) }} >
                         <BsPersonBoundingBox />
                         &nbsp;
                         Scan
@@ -193,7 +204,12 @@ export const CameraPage = () => {
                     </InputGroup>
                   </Col>
                   <Col md="12" className="mb-3">
-                    <ProgressBar variant="success" now={confidencePercentage} label={`${confidencePercentage}%`} />
+                    <ProgressBar>
+                      <ProgressBar variant="success" now={confidencePercentage} label={`${confidencePercentage}%`} key={1} />
+                      {confidencePercentage !== 0 && (
+                        < ProgressBar variant="danger" now={100 - confidencePercentage} key={2} />
+                      )}
+                    </ProgressBar>
                   </Col>
                   <Col md="12" className="mb-2">
                     <Button variant="secondary" onClick={save} >
