@@ -123,7 +123,7 @@ export const CameraPage = () => {
       {/* Page Camera */}
       {isPageCamera && (
         <>
-          <Container>
+          <Container className="mt-5">
             <Row md={4} className="justify-content-md-center">
               <Col md="8" className="mb-2">
 
@@ -131,7 +131,7 @@ export const CameraPage = () => {
                   {/* className="camera" */}
                   {img.piture
                     ?
-                    <Image src={img.piture} fluid style={{borderRadius:"10px"}}/>
+                    <Image src={img.piture} fluid style={{ borderRadius: "10px" }} />
                     :
                     <BiImageAdd size={450} />
                   }
@@ -168,7 +168,7 @@ export const CameraPage = () => {
                 </Row>
 
                 <Row mb={4} >
-                {/* className="justify-content-md-center" */}
+                  {/* className="justify-content-md-center" */}
 
                   {/* <Form.Group as={Row} className="mb-1"> */}
                   <Col md="12" className="mb-2">
@@ -195,6 +195,14 @@ export const CameraPage = () => {
                       &nbsp;
                       Save
                     </Button>
+                  </Col>
+                  <Col md="12" className="mt-5">
+                    <Image src="/images/motor2.jpg" fluid style={{ borderRadius: "5px" }} />
+                  </Col>
+                  <Col md="12" className="mt-2">
+                    <center>
+                      <span><i> *ภาพตัวอย่างในการถ่าย</i></span>
+                    </center>
                   </Col>
                   {/* </Form.Group > */}
 
