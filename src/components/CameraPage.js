@@ -39,7 +39,7 @@ export const CameraPage = () => {
 
   function imgToTextAPI(img64) {
     setShowLoad(true);
-    axios.post(`${Connects.HOST_NAME}/img-to-text`, { 'url_img': img64 })
+    axios.post(`https://marotab-python-l5xl7xlxna-et.a.run.app/img-to-text`, { 'url_img': img64 })
       .then((response) => {
         const status = response.data.status;
         const result = response.data.result;
