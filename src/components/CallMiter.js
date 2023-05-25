@@ -114,11 +114,13 @@ function CallMiter() {
         setData({ ...Data, 'unit_used': Number(unit_use.toFixed(1)), 'Total': total.toFixed(1), 'electricity_bill': Number(electricityBillTotal.toFixed(1)) });
     }
 
+    // Save
     const save = (event) => {
         setShowLoad(true);
 
         // set Date Defalut current
         Data.date_call = format(new Date(), "yyyy-MM-dd");
+        Data.id = null;
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
         axios.post(`${Connects.HOST_NAME}/insert-data`, data)
             .then((response) => {
@@ -142,8 +144,10 @@ function CallMiter() {
         event.preventDefault();
     }
 
+    // Update
     const update = () => {
         setShowLoad(true);
+
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
         axios.post(`${Connects.HOST_NAME}/update-data-call`, data)
             .then(response => {
