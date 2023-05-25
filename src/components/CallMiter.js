@@ -84,7 +84,7 @@ function CallMiter() {
                     status = 'success';
                 }
                 else if (state.toLowerCase() === 'empty') {
-                    setDetailToast({ status: 'Danger', result: 'Data Empty' });
+                    setDetailToast({ status: 'Danger', result: 'ยังไม่มีการสแกน!' });
                     setShowAlert(true);
 
                     // setData(DataCalculateUnit);

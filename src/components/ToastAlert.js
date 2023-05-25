@@ -17,7 +17,7 @@ export function ToastAlert(props) {
                         <strong className="me-auto">Marotab Web</strong>
                         {/* <small className="text-muted">just now</small> */}
                     </Toast.Header >
-                    <Toast.Body className="text-white">{toast.status} {toast.result}</Toast.Body>
+                    <Toast.Body className="text-white">{toast.result}</Toast.Body>
                 </Toast >
             </ToastContainer >
         </>
