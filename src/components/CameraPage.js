@@ -105,7 +105,7 @@ export const CameraPage = () => {
         const result = response.data.result;
         // set alert toast
         setShowAlert(!ShowAlert);
-        setDetailToast({ 'status': status, 'result': result })
+        setDetailToast({ 'status': status, 'result': status })
       })
       .catch((error) => {
         console.error(error.message);
