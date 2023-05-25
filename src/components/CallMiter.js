@@ -1,3 +1,4 @@
+import { BsFillFileEarmarkPdfFill, BsSave, BsPlusSlashMinus, BsFillPencilFill } from "react-icons/bs";
 import { Button, Form, Container, Row, Col } from 'react-bootstrap'
 import { DataCalculateUnit } from '../data/DataCalculateUnit';
 import interFaceTenantRoom from '../data/DataTenantRoom';
@@ -8,7 +9,6 @@ import SpinerLoad from './SpinerLoad';
 import NavBar from './NavBar';
 import axios from 'axios';
 import "./CallMiter.css";
-import { BsFillFileEarmarkPdfFill, BsSave, BsPlusSlashMinus, BsFillPencilFill } from "react-icons/bs";
 import { format } from 'date-fns';
 
 function CallMiter() {
@@ -119,18 +119,14 @@ function CallMiter() {
 
         // set Date Defalut current
         Data.date_call = format(new Date(), "yyyy-MM-dd");
-        console.table(Data);
-
-        const api = (Data.id == null) ? `${Connects.HOST_NAME}/insert-data` : `${Connects.HOST_NAME}/update-data-call`;
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
-        // console.log(api);
-        axios.post(api, data)
+        axios.post(`${Connects.HOST_NAME}/insert-data`, data)
             .then((response) => {
                 // console.log(response.data);
                 // const result = response.data.result;
                 const status = response.data.status;
                 if (status.toLowerCase() === 'success') {
-                    setDetailToast({ status: status, result: status + ' Save Record' });
+                    setDetailToast({ status: status, result: ' Save Record' });
                     setShowAlert(true);
 
                     // setData(result);
@@ -144,6 +140,24 @@ function CallMiter() {
             .finally(() => setShowLoad(false));
 
         event.preventDefault();
+    }
+
+    const update = () => {
+        setShowLoad(true);
+        const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
+        axios.post(`${Connects.HOST_NAME}/update-data-call`, data)
+            .then(response => {
+                const status = response.data.status;
+                if (status.toLowerCase() === 'success') {
+                    setDetailToast({ status: status, result: ' Update Record!' });
+                    setShowAlert(true);
+                }
+            })
+            .catch((err) => {
+                setDetailToast({ status: 'Danger', result: err });
+                setShowAlert(true);
+            })
+            .finally(() => setShowLoad(false));
     }
 
     useEffect(() => {
@@ -292,11 +306,12 @@ function CallMiter() {
                         <Row md={12}>
 
                             <Col md={12} style={{ margin: '1rem' }}>
-                                <Button variant="dark" style={{ marginRight: '10px' }} onClick={callProcess} ><BsPlusSlashMinus /></Button>
-                                {/* Calculate */}
                                 <Button variant="danger" style={{ marginRight: '10px' }}><BsFillFileEarmarkPdfFill /></Button>
                                 {/* PDF */}
+                                <Button variant="dark" style={{ marginRight: '10px' }} onClick={callProcess} ><BsPlusSlashMinus /></Button>
+                                {/* Calculate */}
                                 <Button type='submit' variant="secondary" style={{ marginRight: '10px' }}><BsSave /> &nbsp; Save</Button>
+                                <Button type='button' variant="secondary" style={{ marginRight: '10px' }} onClick={update}><BsFillPencilFill /> &nbsp; Edit</Button>
                             </Col>
                         </Row>
                     </Form>
