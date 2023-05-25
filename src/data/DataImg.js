@@ -1,5 +1,5 @@
 export const dataImg = {
-    id: 0,
+    id: null,
     room_number: null,
     piture: null,
     unit_present: '',

@@ -26,7 +26,7 @@ function Register() {
             // Google Cloud
             // axios.post('https://marotab-api-python-l5xl7xlxna-as.a.run.app/insert-data', dataList)
             .then((response) => {
-                console.log(response.data.message);
+                // console.log(response.data.message);
                 setIsRedirect(true);
             })
             .catch((error) => {

@@ -1,7 +1,7 @@
 import Camera, { FACING_MODES } from 'react-html5-camera-photo';
 import { Button, Image, Modal } from 'react-bootstrap';
 import 'react-html5-camera-photo/build/css/index.css';
-import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat } from "react-icons/bs";
+import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat, BsArrowRepeat } from "react-icons/bs";
 import React, { useState } from 'react';
 
 function OpenCamera(props) {
@@ -34,6 +34,11 @@ function OpenCamera(props) {
         );
     }
 
+    function revertCamera() {
+        const cameraElement = document.getElementById('camera');
+        cameraElement.style.transform = 'rotate(90deg)';
+    }
+
     return (
         <>
             {cameraActive && (
@@ -46,8 +51,11 @@ function OpenCamera(props) {
                         isImageMirror={false}
                     />
                     <center style={{ margin: "10px" }}>
-                        <Button variant='secondary' onClick={changeCamera}>
+                        <Button variant='secondary' onClick={changeCamera} style={{ marginRight: "1rem" }}>
                             <BsPhoneFlip />
+                        </Button>
+                        <Button variant='secondary' onClick={revertCamera}>
+                            <BsArrowRepeat />
                         </Button>
                     </center>
                 </>

@@ -1,19 +1,21 @@
 .position-grid {
-    margin: 20px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
 }
-.position-grid-label{
-    margin:  15px 0px 20px 0px;
+
+.position-grid-label {
+    margin: 15px 0px 20px 0px;
     text-align: center;
 }
 
-.callmiter-name{
+.callmiter-name {
     color: white;
     font-size: 20px;
     margin: 0px 10px 30px;
     border: 2px solid white;
     border-radius: 20px;
-    background: #796D6D ;
+    background: #796D6D;
 }
+
 .call-miter-bg-img {
     display: flex;
     justify-content: center;
@@ -24,37 +26,44 @@
     background-position: center;
     background-size: cover;
 }
-.callmiter{
+
+.callmiter {
     margin: 40px;
 }
-.callmiter-Unit-total{
+
+.callmiter-Unit-total {
     margin-bottom: 10px;
-    text-align: center;
-}
-.callmiter-Unit-rental{
-    text-align: center;
-}
-@media screen and (max-width: 767px){
-.call-miter-bg-img{
-    text-align: start;
-    display: flexbox;
-}
-.callmite-head{
-    text-align: center;
-    font-size: 30px;
-}
-.callmiter-Unit-total{
-    margin-bottom: 10px;
-    text-align: center;
-}
-.callmiter-Unit-rental{
-    text-align: center;
-    margin-top: -10px;
-}
-.position-grid-label{
-    margin: 30px 0px 30px 0px;
     text-align: center;
 }
 
+.callmiter-Unit-rental {
+    text-align: center;
 }
-    
+
+@media screen and (max-width: 767px) {
+    .call-miter-bg-img {
+        text-align: start;
+        display: flexbox;
+    }
+
+    .callmite-head {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .callmiter-Unit-total {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .callmiter-Unit-rental {
+        text-align: center;
+        margin-top: -10px;
+    }
+
+    .position-grid-label {
+        margin: 30px 0px 30px 0px;
+        text-align: center;
+    }
+
+}

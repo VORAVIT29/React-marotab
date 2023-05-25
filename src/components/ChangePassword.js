@@ -51,11 +51,11 @@ function ChangePassword() {
                         </div>
                         <div className='inputbox'>
                             <input type='password' required name='password' defaultValue={element.password} onChange={changeValue} />
-                            <label>Password</label>
+                            <label>New Password</label>
                         </div>
                         <div className='inputbox'>
                             <input type='password' required name='new_password' />
-                            <label>New Password</label>
+                            <label>Confirm Password</label>
                         </div>
                         <button className='btn-change'>Submit</button>
                         <div className="Login">

@@ -20,7 +20,7 @@ function Forget() {
                     setIsRedirect(true);
                 }
                 else {
-                    alert(result.result)
+                    alert(result.result);
                     event.preventDefault();
                 }
             })

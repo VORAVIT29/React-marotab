@@ -97,6 +97,7 @@ export const CameraPage = () => {
   }
 
   function save() {
+    setShowLoad(true);
     const data = { target: JSON.stringify(img), table: 'camera_capture_unit' };
     axios.post(`${Connects.HOST_NAME}/save-img`, data)
       .then((response) => {
@@ -110,7 +111,8 @@ export const CameraPage = () => {
         console.error(error.message);
         setShowAlert(true);
         setDetailToast({ 'status': 'Danger', 'result': error.message })
-      });
+      })
+      .finally(() => setShowLoad(false));
   }
 
   function editUnitPresent(event) {

@@ -4,7 +4,7 @@ export function ToastAlert(props) {
     const { close, alert, toast } = props;
     return (
         <>
-            <ToastContainer position="top-end" className="p-3" style={{ zIndex: 1 }}>
+            <ToastContainer position="top-end" className="p-3" style={{ zIndex: 1, position: 'fixed' }}>
                 <Toast onClose={close} show={alert} bg={toast.status.toLowerCase()} delay={3000} autohide>
                     <Toast.Header>
                         <img

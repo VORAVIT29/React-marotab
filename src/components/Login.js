@@ -15,11 +15,13 @@ function Login() {
     }
 
     function login(event) {
+        // console.log("login...");
         // console.log(values);
         axios.post(`${Connects.HOST_NAME}/check-login`, values)
             .then((response) => {
-                const result = response.data.result
-                if (Number(result) > 0)
+                const status = response.data.status;
+                // console.log(status);
+                if (status.toLowerCase() === 'success')
                     setIsRedirect(true);
             })
             .catch((error) => {

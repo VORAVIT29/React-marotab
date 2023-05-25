@@ -39,8 +39,9 @@ function TenantRoom(props) {
     }
 
     function findDataByid(event) {
+        setShowLoad(true);
         const { name, value } = event.target;
-        axios.get(`${Connects.HOST_NAME}/find-data-tenant-byIdNumber/${value}`)
+        axios.get(`${Connects.HOST_NAME}/find-data-tenant-byIdNumber/Tenant_registration/${value}`)
             .then((response) => {
                 const data_result = response.data.result[0];
                 const status = response.data.status;
@@ -59,6 +60,7 @@ function TenantRoom(props) {
             .catch((error) => {
                 alert(error.message);
             })
+            .finally(() => setShowLoad(false));
     }
 
     function submit(event) {
