@@ -9,6 +9,7 @@ import "./CameraPage.css";
 import axios from "axios";
 import { Connects } from "../data/Connects";
 import { ToastAlert } from "./ToastAlert";
+import { format } from "date-fns";
 
 export const CameraPage = () => {
   const [img, setImg] = useState(dataImg);
@@ -98,11 +99,14 @@ export const CameraPage = () => {
 
   function save() {
     setShowLoad(true);
+    // set date time
+    img.date_call = format(new Date(), 'yyyy-MM-dd');
+    img.time_call = format(new Date(), 'HH:mm');
     const data = { target: JSON.stringify(img), table: 'camera_capture_unit' };
     axios.post(`${Connects.HOST_NAME}/save-img`, data)
       .then((response) => {
         const status = response.data.status;
-        const result = response.data.result;
+        // const result = response.data.result;
         // set alert toast
         setShowAlert(!ShowAlert);
         setDetailToast({ 'status': status, 'result': status })
@@ -119,6 +123,15 @@ export const CameraPage = () => {
     const { value, name } = event.target;
     const formatNumber = value.replace(/(\d{4})(\d+)/, "$1.$2");
     setImg({ ...img, [name]: formatNumber });
+  }
+
+
+  function handlerFile(event) {
+    const { files } = event.target;
+    console.log(files[0]);
+    console.log(URL.createObjectURL(files[0]));
+    setImg({ ...img, piture: URL.createObjectURL(files[0]) })
+    // document.querySelector('#file-name').click();
   }
 
   useEffect(() => {
@@ -149,11 +162,10 @@ export const CameraPage = () => {
                     ?
                     <Image src={img.piture} fluid style={{ borderRadius: "10px" }} />
                     :
-                    <BsCardImage size={450} style={{ opacity: '0.4' }} />
+                    < BsCardImage size={350} style={{ opacity: '0.4' }} />
                   }
                   <Button variant="dark" onClick={setPage} style={{ margin: "3%" }}><BsFillCameraFill /></Button>
-                </center >
-
+                </center>
               </Col>
 
               <Col md="4" className="mb-2 bg-container">
@@ -236,7 +248,8 @@ export const CameraPage = () => {
             </Row>
           </Container>
         </>
-      )}
+      )
+      }
 
       {/* Page open camera */}
       {

@@ -1,14 +1,57 @@
-import { Col, Row } from 'react-bootstrap';
-import './Home.css';
-import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import Table from 'react-bootstrap/Table';
+import GenReport from './PrintReport/GenReport';
+import { Connects } from '../data/Connects';
 import Button from 'react-bootstrap/Button';
+import { useEffect, useState } from 'react';
+import { Col, Row } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import './Home.css';
+import { format } from 'date-fns';
+import { th } from 'date-fns/locale';
+
 function Home() {
+    const [reportList, setReportList] = useState([]);
+    const [roomNumber, setRoomnumber] = useState([]);
+
+
+    const setRoom = () => {
+        axios.get(`${Connects.HOST_NAME}/all-data/status_room`)
+            .then((response) => {
+                const result = response.data;
+                setRoomnumber(result);
+            })
+            .catch((err) => console.error(err.message));
+    }
+
+    const handlerchange = (event) => {
+        const { value } = event.target;
+        axios.get(`${Connects.HOST_NAME}/find-callmiter-list/${value}`)
+            .then((response) => {
+                const status = response.data.status;
+                const result = response.data.result;
+                if (status.toLowerCase() === 'success')
+                    setReportList(result);
+                else setReportList([]);
+            })
+            .catch((err) => console.error(err.message))
+    }
+
+    const formatDate = (date) => {
+        const dataYear = format(new Date(date), 'd MMM yyyy', { locale: th });
+        const year = format(new Date(date), 'yyyy', { locale: th });
+        const convertYear = Number(year) + 543;
+        return dataYear.replace(year, convertYear.toString());
+    }
+
+    useEffect(() => {
+        setRoom();
+    }, []);
+
     return (
         <div className='home'>
             <div className='home-marotab'>
-                <img className='img' src="./images/icon_wab.png" />
+                <img className='img' src="/images/icon_wab.png" alt='' />
 
                 <div className='home-w'>
                     <span>
@@ -26,8 +69,8 @@ function Home() {
 
                 <div className='wed'>
                     <span>
-                        เว็บไซต์สำหรับเจ้าของหอพักช่วยคำนวณค่าไฟฟ้า 
-                        ในแต่ละเดือนด้วยกล้องโทรศัพท์มือถือ 
+                        เว็บไซต์สำหรับเจ้าของหอพักช่วยคำนวณค่าไฟฟ้า
+                        ในแต่ละเดือนด้วยกล้องโทรศัพท์มือถือ
                         ลดระยะเวลาการจดค่าไฟฟ้าตามห้องพัก
                     </span>
                     <hr className='line1'></hr>
@@ -60,11 +103,20 @@ function Home() {
                         <Col xs="auto">
                             <InputGroup >
                                 <InputGroup.Text id="basic-addon1"><span style={{ fontSize: "20px" }}>&#x2315;</span></InputGroup.Text>
-                                <Form.Control
-                                    placeholder="Username"
-                                    aria-label="Username"
+                                {/* <Form.Control
+                                    aria-label="RoomNumber"
                                     aria-describedby="basic-addon1"
-                                />
+                                /> */}
+                                <Form.Select onChange={handlerchange}>
+                                    <option value="0" >-- เลือกห้อง --</option>
+                                    {roomNumber.map((data, index) => {
+                                        return (
+                                            data.status && (
+                                                <option key={index} value={data.id}>{data.room_number}</option>
+                                            )
+                                        );
+                                    })}
+                                </Form.Select>
                             </InputGroup>
                         </Col>
                     </Row>
@@ -73,13 +125,9 @@ function Home() {
                     <div className='home-table-bill'>
                         <table className='ta'>
                             <tr className='t'>
-                                <th className='b p'></th>
-                                <th className='b p'>ใบเสร็จ</th>
-                                <th className='b p'> </th>
-                                <th className='b p'> </th>
-
+                                <th colSpan={4} className='b p' style={{ color: "white" }}>ใบเสร็จ</th>
                             </tr>
-                            <tr className='t'>
+                            {/* <tr className='t'>
                                 <td className='b'>นายจำลอง    ประเสริฐพงษ์</td>
                                 <td className='b'>01/01/2566</td>
                                 <td className='b'>
@@ -88,52 +136,24 @@ function Home() {
                                     <Button variant="secondary">Down load PDF</Button>{' '}
                                 </td>
                                 <td></td>
-                                {/* <td className='b'><Button variant="secondary">Img camera</Button>{' '}</td> */}
-                            </tr>
-                            <tr className='t'>
-                                <td className='b'></td>
-                                <td className='b'>02/01/2566</td>
-                                <td className='b'>
-                                    <img src='./images/pdf.png'></img>
-                                    <br></br>
-                                    <Button variant="secondary">Down load PDF</Button>{' '}
-                                </td>
-                                <td></td>
-                                {/* <td className='b'><Button variant="secondary">Down load</Button>{' '}</td> */}
-                            </tr>
-                            <tr className='t'>
-                                <td className='b'></td>
-                                <td className='b'>03/01/2566</td>
-                                <td className='b'>
-                                    <img src='./images/pdf.png'></img>
-                                    <br></br>
-                                    <Button variant="secondary">Down load PDF</Button>{' '}
-                                </td>
-                                <td></td>
-                                {/* <td className='b'><Button variant="secondary">Down load</Button>{' '}</td> */}
-                            </tr>
-                            <tr className='t'>
-                                <td className='b'></td>
-                                <td className='b'>04/01/2566</td>
-                                <td className='b'>
-                                    <img src='./images/pdf.png'></img>
-                                    <br></br>
-                                    <Button variant="secondary">Down load PDF</Button>{' '}
-                                </td>
-                                <td></td>
-                                {/* <td className='b'><Button variant="secondary">Down load</Button>{' '}</td> */}
-                            </tr>
-                            <tr className='t'>
-                                <td className='b'></td>
-                                <td className='b'>05/01/2566</td>
-                                <td className='b'>
-                                    <img src='./images/pdf.png'></img>
-                                    <br></br>
-                                    <Button variant="secondary">Down load PDF</Button>{' '}
-                                </td>
-                                <td></td>
-                                {/* <td className='b'><Button variant="secondary">Down load</Button>{' '}</td> */}
-                            </tr>
+                            </tr> */}
+                            {reportList.map((data, index) => {
+                                return (
+                                    <tr className='t' key={index}>
+                                        <td className='b'>{data.fullname}</td>
+                                        <td className='b'>{formatDate(data.date_call)}</td>
+                                        {/* <td className='b'></td> */}
+                                        <td className='b'>
+                                            <img src='/images/pdf.png' alt='ruk' />
+                                            <br></br>
+                                            <GenReport dataCall={data} info={{ name: data.fullname, last_name: '' }}>
+                                                <Button variant="secondary">Down load PDF</Button>
+                                            </GenReport>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                );
+                            })}
                         </table>
                     </div>
                     <br></br>
@@ -169,8 +189,8 @@ function Home() {
                         <img className='home-img-vs' src="./images/vscore.png" />
                     </div>
                     <p className='home-text-img-text'>
-                        VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด 
-                        ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น 
+                        VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด
+                        ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น
                         ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
                     </p>
                 </div>
@@ -203,7 +223,7 @@ function Home() {
                     <p className='home-text-p-ocr'>
                         เจ้าของหอพักถ่ายรูปมิเตอร์ก่อนหน้ากับปัจจุบันเพื่อทำการ
                         สแกนภาพโดยใช้ OpenCV เพื่อประมวณผลภาพจากกล้อง
-                        โทรศัพท์มือถือ จะได้หน่วยมิเตอร์ก่อนและหน่วยมิเตอร์ปัจจุบัน 
+                        โทรศัพท์มือถือ จะได้หน่วยมิเตอร์ก่อนและหน่วยมิเตอร์ปัจจุบัน
                         แล้วบันทึกวันที่-เวลาใน Database
                     </p>
                 </div>
@@ -242,7 +262,7 @@ function Home() {
                         ดึงข้อมูลที่ต้องการใช้งาน
                     </p>
                 </div>
-                
+
 
             </div>
             <br></br>
@@ -283,7 +303,7 @@ function Home() {
                 </p>
                 <br></br>
             </div>
-        </div>
+        </div >
 
     );
 }

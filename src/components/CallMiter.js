@@ -10,6 +10,7 @@ import NavBar from './NavBar';
 import axios from 'axios';
 import "./CallMiter.css";
 import { format } from 'date-fns';
+import GenReport from "./PrintReport/GenReport";
 
 function CallMiter() {
     const [ShowAlert, setShowAlert] = useState(false);
@@ -106,32 +107,30 @@ function CallMiter() {
     }
 
     const callProcess = () => {
+        setShowLoad(true);
         // console.log(Data);
         const unit_use = Data.unit_present - Data.unit_before;
         const electricityBillTotal = unit_use * Data.electricity_rate;
         const total = (Number(electricityBillTotal.toFixed(1)) + Number(Data.room_rental) + Number(Data.Other));
 
         setData({ ...Data, 'unit_used': Number(unit_use.toFixed(1)), 'Total': total.toFixed(1), 'electricity_bill': Number(electricityBillTotal.toFixed(1)) });
+
+        setTimeout(() => setShowLoad(false), 800);
     }
 
     // Save
     const save = (event) => {
         setShowLoad(true);
 
-        // set Date Defalut current
-        Data.date_call = format(new Date(), "yyyy-MM-dd");
         Data.id = null;
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
         axios.post(`${Connects.HOST_NAME}/insert-data`, data)
             .then((response) => {
                 // console.log(response.data);
-                // const result = response.data.result;
                 const status = response.data.status;
                 if (status.toLowerCase() === 'success') {
                     setDetailToast({ status: status, result: ' Save Record' });
                     setShowAlert(true);
-
-                    // setData(result);
                 }
             })
             .catch((err) => {
@@ -310,7 +309,9 @@ function CallMiter() {
                         <Row md={12}>
 
                             <Col md={12} style={{ margin: '1rem' }}>
-                                <Button variant="danger" style={{ marginRight: '10px' }}><BsFillFileEarmarkPdfFill /></Button>
+                                <GenReport dataCall={Data} info={DataTen} >
+                                    <Button variant="danger" style={{ marginRight: '10px' }}><BsFillFileEarmarkPdfFill /></Button>
+                                </GenReport>
                                 {/* PDF */}
                                 <Button variant="dark" style={{ marginRight: '10px' }} onClick={callProcess} ><BsPlusSlashMinus /></Button>
                                 {/* Calculate */}
