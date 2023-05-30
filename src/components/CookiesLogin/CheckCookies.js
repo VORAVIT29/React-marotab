@@ -13,11 +13,11 @@ export function CheckCookies() {
         if (cookie) {
             const { status, id } = JSON.parse(cookie);
             if (status.toLowerCase() !== 'success')
-                nav('/Back-End/Login');
-            else if (pathName === '/Back-End/Login')
-                nav('/Back-End/Main');
+                nav('/back-end/login');
+            else if (pathName === '/back-end/login')
+                nav('/back-end/main');
         }
-        else nav('/Back-End/Login');
+        else nav('/back-end/login');
     }
 
     useEffect(() => {

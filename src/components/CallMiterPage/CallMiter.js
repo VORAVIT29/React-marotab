@@ -79,7 +79,7 @@ function CallMiter() {
                 const state = response.data.status;
                 const result = response.data.result;
                 if (state.toLowerCase() === 'success') {
-                    console.table(result);
+                    // console.table(result);
                     result_ = result;
                     status = 'success';
                 }
