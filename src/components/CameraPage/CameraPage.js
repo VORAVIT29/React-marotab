@@ -28,7 +28,7 @@ export const CameraPage = () => {
         setRoomNumber(response.data);
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         setShowAlert(true);
         setDetailToast({ 'status': 'Danger', 'result': error.message })
       })
@@ -129,8 +129,8 @@ export const CameraPage = () => {
 
   function handlerFile(event) {
     const { files } = event.target;
-    console.log(files[0]);
-    console.log(URL.createObjectURL(files[0]));
+    // console.log(files[0]);
+    // console.log(URL.createObjectURL(files[0]));
     setImg({ ...img, piture: URL.createObjectURL(files[0]) })
     // document.querySelector('#file-name').click();
   }

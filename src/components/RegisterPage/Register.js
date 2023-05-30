@@ -30,7 +30,7 @@ function Register() {
                 setIsRedirect(true);
             })
             .catch((error) => {
-                console.log(error.message);
+                // console.log(error.message);
             });
         event.preventDefault();
     }

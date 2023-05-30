@@ -19,7 +19,7 @@ function TenantRoom(props) {
                 setRoomNumber(response.data);
             })
             .catch((error) => {
-                console.log(error.message);
+                // console.log(error.message);
             })
             .finally((done) => {
                 setTimeout(() => {
@@ -70,10 +70,10 @@ function TenantRoom(props) {
         const data = { target: JSON.stringify(tenantRoomValue), table: "Tenant_registration" };
         axios.post(`${Connects.HOST_NAME}/insert-data`, data)
             .then((response) => {
-                console.log(response.data.status);
+                // console.log(response.data.status);
             })
             .catch((error) => {
-                console.log(error.message);
+                // console.log(error.message);
             })
             .finally((done) => {
                 setTimeout(() => {

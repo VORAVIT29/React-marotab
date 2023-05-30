@@ -25,7 +25,7 @@ function Forget() {
                 }
             })
             .catch((error) => {
-                console.log(error.message);
+                // console.log(error.message);
             });
         event.preventDefault();
     }
