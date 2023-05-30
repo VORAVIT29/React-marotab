@@ -60,7 +60,7 @@ function ChangePassword() {
                         <button className='btn-change'>Submit</button>
                         <div className="Login">
                             <p>
-                                <NavLink to="/Back-End/Login">Back to Login</NavLink>
+                                <NavLink to="/back-end/login">Back to Login</NavLink>
                             </p>
                         </div>
                     </form>

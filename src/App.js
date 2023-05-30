@@ -21,14 +21,14 @@ function App() {
                     <Route path='/' exact element={<Home />} />
 
                     {/* Back End */}
-                    <Route path='/Back-End/Main' exact element={<Main />} />
-                    <Route path='/Back-End/Login' exact element={<Login />} />
-                    <Route path='/Back-End/Register' exact element={<Register />} />
-                    <Route path='/Back-End/Forget' exact element={<Forget />} />
-                    <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
-                    <Route path='/Back-End/Camera' exact element={<CameraPage />} />
-                    <Route path='/Back-End/Call' exact element={<CallMiter />} />
-                    <Route path='/Back-End/Logout' exact element={<Logout />} />
+                    <Route path='/back-end/main' exact element={<Main />} />
+                    <Route path='/back-end/login' exact element={<Login />} />
+                    <Route path='/back-end/register' exact element={<Register />} />
+                    <Route path='/back-end/forget' exact element={<Forget />} />
+                    <Route path='/back-end/changePassword' exact element={<ChangePassword />} />
+                    <Route path='/back-end/camera' exact element={<CameraPage />} />
+                    <Route path='/back-end/call' exact element={<CallMiter />} />
+                    <Route path='/back-end/logout' exact element={<Logout />} />
 
                     {/* Error 404 */}
                     {/* <Route exact path='*' /> */}

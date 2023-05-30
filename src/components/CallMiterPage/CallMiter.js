@@ -141,7 +141,10 @@ function CallMiter() {
             })
             .finally(() => {
                 setShowLoad(false);
-                window.location.reload();
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 800);
             });
 
         event.preventDefault();

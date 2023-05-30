@@ -20,15 +20,15 @@ function NavBar(props) {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="/Back-End/Main">Main</Nav.Link>
+                            <Nav.Link href="/back-end/main">Main</Nav.Link>
                             <NavDropdown title="Menu" id="collasible-nav-dropdown">
-                                <NavDropdown.Item href="/Back-End/Main">ข้อมูลผู้เช่า</NavDropdown.Item>
-                                <NavDropdown.Item href="/Back-End/Camera">
+                                <NavDropdown.Item href="/back-end/main">ข้อมูลผู้เช่า</NavDropdown.Item>
+                                <NavDropdown.Item href="/back-end/camera">
                                     กล้องถ่ายรูป
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="/Back-End/Call">คำนวณ</NavDropdown.Item>
+                                <NavDropdown.Item href="/back-end/call">คำนวณ</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="/Back-End/Logout">
+                                <NavDropdown.Item href="/back-end/logout">
                                     Logout
                                 </NavDropdown.Item>
                             </NavDropdown>

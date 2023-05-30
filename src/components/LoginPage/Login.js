@@ -60,14 +60,14 @@ function Login() {
                                 </div>
                                 <div className="forget">
                                     <p>
-                                        <Link to="/Back-End/forget">Forget Password</Link>
+                                        <Link to="/back-end/forget">Forget Password</Link>
                                     </p>
 
                                 </div>
                                 <button className='btn-submit'>Log in</button>
                                 <div className="register">
                                     <p>
-                                        Don't have a account <Link to="/Back-End/register">Register</Link>
+                                        Don't have a account <Link to="/back-end/register">Register</Link>
                                     </p>
                                 </div>
                             </form>
