@@ -234,9 +234,12 @@ class TemplteReport extends React.Component {
                                                         <tbody>
                                                             <tr valign="top" style={{ height: 0 }}>
                                                                 <td style={{ width: '260px' }} />
-                                                                <td style={{ width: '130px' }} />
-                                                                <td style={{ width: '141px' }} />
-                                                                <td style={{ width: '129px' }} />
+                                                                {/* <td style={{ width: '130px' }} /> */}
+                                                                <td style={{ width: '140px' }} />
+                                                                {/* <td style={{ width: '141px' }} /> */}
+                                                                <td style={{ width: '95px' }} />
+                                                                {/* <td style={{ width: '129px' }} /> */}
+                                                                <td style={{ width: '119px' }} />
                                                             </tr>
                                                             <tr valign="top" style={{ height: '21px' }}>
                                                                 <td style={{
@@ -252,13 +255,14 @@ class TemplteReport extends React.Component {
                                                                 </td>
                                                                 <td style={{
                                                                     pointerEvents: 'auto', borderTop: '1px solid #000000',
-                                                                    borderBottom: '1px solid #000000', textIndent: '10px', verticalAlign: 'middle',
+                                                                    borderBottom: '1px solid #000000', verticalAlign: 'middle',
                                                                     textAlign: 'left'
                                                                 }}>
+                                                                    {/* textIndent: '10px', */}
                                                                     <span style={{
                                                                         fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '16px',
                                                                         lineHeight: 1, lineHeight: 'normal', fontWeight: 'bold'
-                                                                    }}>ว/ด/ป
+                                                                    }}>ว/ด/ป (ที่สแกน)
                                                                         : {formatDate(dataCall.date_camera)}</span>
                                                                 </td>
                                                                 <td style={{
@@ -274,7 +278,7 @@ class TemplteReport extends React.Component {
                                                                 </td>
                                                                 <td style={{
                                                                     pointerEvents: 'auto', border: '1px solid #000000', textIndent: '0px',
-                                                                    verticalAlign: 'middle', textAlign: 'left'
+                                                                    verticalAlign: 'middle', textAlign: 'center'
                                                                 }}>
                                                                     <span style={{
                                                                         fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '16px',

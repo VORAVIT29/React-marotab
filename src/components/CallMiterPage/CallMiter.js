@@ -11,6 +11,7 @@ import axios from 'axios';
 import GenReport from "../PrintReport/GenReport";
 import "./CallMiter.css";
 import { CheckCookies } from "../CookiesLogin/CheckCookies";
+import { format } from "date-fns";
 
 function CallMiter() {
     const [ShowAlert, setShowAlert] = useState(false);
@@ -122,7 +123,7 @@ function CallMiter() {
         setShowLoad(true);
 
         Data.id = null;
-        Data.date_call = Data.date_camera;
+        Data.date_call = format(new Date(), 'yyyy-MM-dd');
         // console.log('Save ', Data);
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
         axios.post(`${Connects.HOST_NAME}/insert-data`, data)
@@ -325,10 +326,10 @@ function CallMiter() {
                                 {/* PDF */}
                                 <Button variant="dark" style={{ marginRight: '10px' }} onClick={callProcess} ><BsPlusSlashMinus /></Button>
                                 {/* Calculate */}
-                                {(new Date(Data.date_call).getTime() !== new Date(Data.date_camera).getTime()) && (
+                                {!Data.is_date && (
                                     <Button type='submit' variant="secondary" style={{ marginRight: '10px' }}><BsSave /> &nbsp; Save</Button>
                                 )}
-                                {(new Date(Data.date_call).getTime() === new Date(Data.date_camera).getTime()) && (
+                                {Data.is_date && (
                                     <Button type='button' variant="secondary" style={{ marginRight: '10px' }} onClick={update}><BsFillPencilFill /> &nbsp; Edit</Button>
                                 )}
                             </Col>

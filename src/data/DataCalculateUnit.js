@@ -9,5 +9,7 @@ export const DataCalculateUnit = {
     Total: 0,
     room_number: '',
     unit_present: '',
-    date_call: ''
+    date_call: '',
+    date_camera: '',
+    time_camera: '',
 };
