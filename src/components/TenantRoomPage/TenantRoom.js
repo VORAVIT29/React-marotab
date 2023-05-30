@@ -1,8 +1,8 @@
 import { Modal, Container, Form, Button, Row, Col } from 'react-bootstrap';
-import interFaceTenantRoom from '../data/DataTenantRoom';
+import interFaceTenantRoom from '../../data/DataTenantRoom';
 import { useEffect, useState } from 'react';
-import { Connects } from '../data/Connects';
-import SpinerLoad from './SpinerLoad';
+import { Connects } from '../../data/Connects';
+import SpinerLoad from '../SpinerLoadPage/SpinerLoad';
 import { format } from 'date-fns';
 import axios from 'axios';
 import './TenantRoom.css';

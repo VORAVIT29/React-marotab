@@ -1,6 +1,6 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Connects } from '../data/Connects';
+import { Connects } from '../../data/Connects';
 import axios from 'axios';
 import './ChangePassword.css';
 

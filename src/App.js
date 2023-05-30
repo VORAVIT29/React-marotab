@@ -1,14 +1,15 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Forget from './components/Forget';
-import Home from './components/Home';
-import Main from './components/Main';
-import CallMiter from './components/CallMiter';
-import ChangePassword from './components/ChangePassword';
-import { CameraPage } from './components/CameraPage';
+import Home from './components/HomePage/Home';
+import Login from './components/LoginPage/Login';
+import Register from './components/RegisterPage/Register';
+import Forget from './components/ForgetPage/Forget';
+import Main from './components/MainPage/Main';
+import ChangePassword from './components/ChangePasswordPage/ChangePassword';
+import CallMiter from './components/CallMiterPage/CallMiter';
+import { CameraPage } from './components/CameraPage/CameraPage';
+import { Logout } from './components/LogoutPage/Logout';
 
 function App() {
     return (
@@ -18,7 +19,6 @@ function App() {
                 <Routes>
                     {/* Font End */}
                     <Route path='/' exact element={<Home />} />
-                    {/* <Route path='/' exact element={<Main />} /> */}
 
                     {/* Back End */}
                     <Route path='/Back-End/Main' exact element={<Main />} />
@@ -28,6 +28,7 @@ function App() {
                     <Route path='/Back-End/ChangePassword' exact element={<ChangePassword />} />
                     <Route path='/Back-End/Camera' exact element={<CameraPage />} />
                     <Route path='/Back-End/Call' exact element={<CallMiter />} />
+                    <Route path='/Back-End/Logout' exact element={<Logout />} />
 
                     {/* Error 404 */}
                     {/* <Route exact path='*' /> */}

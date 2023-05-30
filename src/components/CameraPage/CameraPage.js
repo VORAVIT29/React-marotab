@@ -1,15 +1,16 @@
 import { BsFillCameraFill, BsPersonBoundingBox, BsSave, BsBuildingFill, BsSearch, BsCardImage } from "react-icons/bs";
 import { Button, Image, Row, Col, Form, InputGroup, Container, ProgressBar } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { dataImg } from '../data/DataImg';
-import OpenCamera from "./OpenCamera";
-import SpinerLoad from "./SpinerLoad";
-import NavBar from './NavBar';
-import "./CameraPage.css";
-import axios from "axios";
-import { Connects } from "../data/Connects";
-import { ToastAlert } from "./ToastAlert";
+import { dataImg } from '../../data/DataImg';
+import OpenCamera from "../CameraPage/OpenCamera";
+import SpinerLoad from "../SpinerLoadPage/SpinerLoad";
+import NavBar from '../NavBarPage/NavBar';
+import { Connects } from "../../data/Connects";
+import { ToastAlert } from "../Alert/ToastAlert";
 import { format } from "date-fns";
+import axios from "axios";
+import "./CameraPage.css";
+import { CheckCookies } from "../CookiesLogin/CheckCookies";
 
 export const CameraPage = () => {
   const [img, setImg] = useState(dataImg);
@@ -143,6 +144,8 @@ export const CameraPage = () => {
 
   return (
     <>
+      <CheckCookies />
+      
       <NavBar name="ถ่ายรูปหน้าปัดมิเตอร์" />
       <SpinerLoad showLoad={showLoad} />
 

@@ -1,6 +1,6 @@
 import InputGroup from 'react-bootstrap/InputGroup';
-import GenReport from './PrintReport/GenReport';
-import { Connects } from '../data/Connects';
+import GenReport from '../PrintReport/GenReport';
+import { Connects } from '../../data/Connects';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';

@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import './Forget.css'
-import { Connects } from '../data/Connects';
+import { Connects } from '../../data/Connects';
 
 function Forget() {
     const [values, setValues] = useState({ 'admin_password': '' });

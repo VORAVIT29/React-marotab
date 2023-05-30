@@ -1,10 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { BsExclamationCircle } from "react-icons/bs";
-import interFaceRegister from '../data/DataRegister';
+import interFaceRegister from '../../data/DataRegister';
 import axios from "axios";
 import './Register.css'
-import { Connects } from '../data/Connects';
+import { Connects } from '../../data/Connects';
 
 
 function Register() {

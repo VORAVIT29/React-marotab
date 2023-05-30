@@ -28,7 +28,7 @@ function NavBar(props) {
                                 </NavDropdown.Item>
                                 <NavDropdown.Item href="/Back-End/Call">คำนวณ</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">
+                                <NavDropdown.Item href="/Back-End/Logout">
                                     Logout
                                 </NavDropdown.Item>
                             </NavDropdown>

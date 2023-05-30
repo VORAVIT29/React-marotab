@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Connects } from '../data/Connects';
+import { Connects } from '../../data/Connects';
 import { useState } from 'react';
 import axios from 'axios';
 import './Login.css'
+import Cookies from 'js-cookie';
+import { CheckCookies } from '../CookiesLogin/CheckCookies';
 
 function Login() {
     const [values, setValue] = useState({ username: '', password: '' });
@@ -15,14 +17,17 @@ function Login() {
     }
 
     function login(event) {
-        // console.log("login...");
-        // console.log(values);
         axios.post(`${Connects.HOST_NAME}/check-login`, values)
             .then((response) => {
                 const status = response.data.status;
-                // console.log(status);
-                if (status.toLowerCase() === 'success')
+                const result = response.data.result;
+                if (status.toLowerCase() === 'success') {
                     setIsRedirect(true);
+
+                    // set cookies
+                    const json = { 'status': status, 'id': result };
+                    Cookies.set('Login', JSON.stringify(json), { expires: 7 });
+                }
             })
             .catch((error) => {
                 console.log(error.message);
@@ -37,6 +42,8 @@ function Login() {
 
     return (
         <>
+            <CheckCookies />
+
             <section>
                 <div className='card-center'>
                     <div className="form-box">

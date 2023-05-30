@@ -1,16 +1,16 @@
 import { BsFillFileEarmarkPdfFill, BsSave, BsPlusSlashMinus, BsFillPencilFill } from "react-icons/bs";
 import { Button, Form, Container, Row, Col } from 'react-bootstrap'
-import { DataCalculateUnit } from '../data/DataCalculateUnit';
-import interFaceTenantRoom from '../data/DataTenantRoom';
-import { Connects } from '../data/Connects';
+import { DataCalculateUnit } from '../../data/DataCalculateUnit';
+import interFaceTenantRoom from '../../data/DataTenantRoom';
+import { Connects } from '../../data/Connects';
 import { useEffect, useState } from 'react';
-import { ToastAlert } from './ToastAlert';
-import SpinerLoad from './SpinerLoad';
-import NavBar from './NavBar';
+import { ToastAlert } from '../Alert/ToastAlert';
+import SpinerLoad from '../SpinerLoadPage/SpinerLoad';
+import NavBar from '../NavBarPage/NavBar';
 import axios from 'axios';
+import GenReport from "../PrintReport/GenReport";
 import "./CallMiter.css";
-import { format } from 'date-fns';
-import GenReport from "./PrintReport/GenReport";
+import { CheckCookies } from "../CookiesLogin/CheckCookies";
 
 function CallMiter() {
     const [ShowAlert, setShowAlert] = useState(false);
@@ -48,6 +48,7 @@ function CallMiter() {
                 const state = response.data.status;
                 // console.log(result);
                 if (state.toLowerCase() === 'success') {
+                    // console.log(result[0]);
                     setDataTen(result[0]);
                     room_number = result[0].room_number;
                 } else if (state.toLowerCase() === 'empty') {
@@ -63,8 +64,7 @@ function CallMiter() {
         else
             setData({ ...result, [name]: value });
 
-        setShowLoad(false)
-
+        setTimeout(() => setShowLoad(false), 800);
     }
 
     async function findDataCallMiter(room_number) {
@@ -78,9 +78,8 @@ function CallMiter() {
             .then((response) => {
                 const state = response.data.status;
                 const result = response.data.result;
-                // console.log(response.data);
                 if (state.toLowerCase() === 'success') {
-                    // setData(result);
+                    console.table(result);
                     result_ = result;
                     status = 'success';
                 }
@@ -123,6 +122,8 @@ function CallMiter() {
         setShowLoad(true);
 
         Data.id = null;
+        Data.date_call = Data.date_camera;
+        // console.log('Save ', Data);
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
         axios.post(`${Connects.HOST_NAME}/insert-data`, data)
             .then((response) => {
@@ -138,13 +139,17 @@ function CallMiter() {
                 setDetailToast({ status: 'Danger', result: err });
                 setShowAlert(true);
             })
-            .finally(() => setShowLoad(false));
+            .finally(() => {
+                setShowLoad(false);
+                window.location.reload();
+            });
 
         event.preventDefault();
     }
 
     // Update
     const update = () => {
+        // console.log('update ', Data);
         setShowLoad(true);
 
         const data = { target: JSON.stringify(Data), table: 'calculate_unit' };
@@ -172,6 +177,8 @@ function CallMiter() {
 
     return (
         <>
+            <CheckCookies />
+
             <NavBar name="กรุณาใส่ค่าที่คุณต้องการคำนวณ" />
             <SpinerLoad showLoad={showLoad} />
 
@@ -315,8 +322,12 @@ function CallMiter() {
                                 {/* PDF */}
                                 <Button variant="dark" style={{ marginRight: '10px' }} onClick={callProcess} ><BsPlusSlashMinus /></Button>
                                 {/* Calculate */}
-                                <Button type='submit' variant="secondary" style={{ marginRight: '10px' }}><BsSave /> &nbsp; Save</Button>
-                                <Button type='button' variant="secondary" style={{ marginRight: '10px' }} onClick={update}><BsFillPencilFill /> &nbsp; Edit</Button>
+                                {(new Date(Data.date_call).getTime() !== new Date(Data.date_camera).getTime()) && (
+                                    <Button type='submit' variant="secondary" style={{ marginRight: '10px' }}><BsSave /> &nbsp; Save</Button>
+                                )}
+                                {(new Date(Data.date_call).getTime() === new Date(Data.date_camera).getTime()) && (
+                                    <Button type='button' variant="secondary" style={{ marginRight: '10px' }} onClick={update}><BsFillPencilFill /> &nbsp; Edit</Button>
+                                )}
                             </Col>
                         </Row>
                     </Form>

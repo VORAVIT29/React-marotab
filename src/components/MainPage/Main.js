@@ -1,8 +1,9 @@
-import { NavLink } from 'react-router-dom';
-import NavBar from './NavBar';
-import { useState } from 'react';
-import TenantRoom from './TenantRoom';
+import TenantRoom from '../TenantRoomPage/TenantRoom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import NavBar from '../NavBarPage/NavBar';
 import './Main.css'
+import { useState } from 'react';
+import { CheckCookies } from '../CookiesLogin/CheckCookies';
 
 function Main() {
     const [fullscreen, setFullscreen] = useState(true);
@@ -12,8 +13,11 @@ function Main() {
         setFullscreen(breakpoint);
         setShow(true);
     }
+
     return (
         <>
+            <CheckCookies />
+
             <NavBar name="หน้าหลัก" />
 
             <div className='grid-container'>

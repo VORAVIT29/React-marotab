@@ -259,7 +259,7 @@ class TemplteReport extends React.Component {
                                                                         fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '16px',
                                                                         lineHeight: 1, lineHeight: 'normal', fontWeight: 'bold'
                                                                     }}>ว/ด/ป
-                                                                        : {formatDate(dataCall.date_call)}</span>
+                                                                        : {formatDate(dataCall.date_camera)}</span>
                                                                 </td>
                                                                 <td style={{
                                                                     pointerEvents: 'auto', borderTop: '1px solid #000000',
@@ -270,7 +270,7 @@ class TemplteReport extends React.Component {
                                                                         fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '16px',
                                                                         lineHeight: 1, lineHeight: 'normal', fontWeight: 'bold'
                                                                     }}>เวลา
-                                                                        : {dataCall.time_call} น.</span>
+                                                                        : {dataCall.time_camera} น.</span>
                                                                 </td>
                                                                 <td style={{
                                                                     pointerEvents: 'auto', border: '1px solid #000000', textIndent: '0px',

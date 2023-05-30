@@ -1,4 +1,3 @@
-import { BsFillFileEarmarkPdfFill } from "react-icons/bs";
 import TemplteReport from './TemplteReport';
 import ReactToPrint from 'react-to-print';
 import { Button } from "react-bootstrap";
