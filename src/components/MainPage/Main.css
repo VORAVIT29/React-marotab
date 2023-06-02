@@ -4,11 +4,14 @@
     background-color: rgb(221, 221, 221);
     border-radius: 30px;
     margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
+    /* justify-content: center;
+    align-items: center; */
     text-decoration: none;
     color: black;
+    transition: all 1s;
+    text-align: center;
 }
 
 .square:hover {
@@ -16,6 +19,7 @@
     cursor: pointer;
     font-size: 100%;
     color: black;
+    transform: scale(1.2);
 }
 
 #tenant-room:hover {
@@ -42,20 +46,62 @@
 }
 
 .grid-container {
-    /* max-width: 100%; */
     margin-top: 5%;
-    margin-left: calc(100%/5.5);
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    place-items: center;
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
 }
 
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) { */
+@media screen and (max-width: 1052px) {
     .grid-container {
-        margin: 0;
-        grid-template-columns: repeat(1, 1fr);
         display: grid;
-        margin-left: calc((100% / 15));
+        place-items: center;
+        grid-template-columns: repeat(2, 1fr);
+    }
 
+    .square {
+        transition: all 1s;
+    }
+
+    .square:hover {
+        transition: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .grid-container {
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .square {
+        transition: all 1s;
+    }
+
+    .square:hover {
+        transform: none;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .square {
+        width: 250px;
+        height: 250px;
+        /* background-color: rgb(221, 221, 221);
+        border-radius: 30px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: black; */
+        transition: all 1s;
+    }
+
+    .square:hover {
+        transform: none;
     }
 }

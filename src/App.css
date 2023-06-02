@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 } */
+
+.red {
+  background-color: red !important;
+}
+
+.green {
+  background-color: green !important;
+}
+
+.blue {
+  background-color: blue !important;
+}
+
+.w-auto {
+  width: auto;
+}

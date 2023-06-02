@@ -1,4 +1,9 @@
-.icon-navbar{
+.icon-navbar {
     /* background-color: white;
     border-radius: 5px; */
+}
+
+.nav-profile {
+    background: gray;
+    border: 1px solid black;
 }

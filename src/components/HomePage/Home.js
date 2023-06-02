@@ -1,3 +1,4 @@
+import { BsInboxesFill } from "react-icons/bs";
 import InputGroup from 'react-bootstrap/InputGroup';
 import GenReport from '../PrintReport/GenReport';
 import { Connects } from '../../data/Connects';
@@ -5,10 +6,12 @@ import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import { th } from 'date-fns/locale';
+import { format } from 'date-fns';
 import axios from 'axios';
 import './Home.css';
-import { format } from 'date-fns';
-import { th } from 'date-fns/locale';
+import Badge from 'react-bootstrap/Badge';
+
 
 function Home() {
     const [reportList, setReportList] = useState([]);
@@ -24,9 +27,18 @@ function Home() {
             .catch((err) => console.error(err.message));
     }
 
-    const handlerchange = (event) => {
+    const checkerRoom = (event) => {
         const { value } = event.target;
-        axios.get(`${Connects.HOST_NAME}/find-callmiter-list/${value}`)
+        if (value.length === 3) {
+            const room = roomNumber.find((data) => data.room_number == value)?.id;
+            room && handlerchange(room);
+        }
+        else setReportList([]);
+    }
+
+    const handlerchange = async (value) => {
+        // const { value } = event.target;
+        await axios.get(`${Connects.HOST_NAME}/find-callmiter-list/${value}`)
             .then((response) => {
                 const status = response.data.status;
                 const result = response.data.result;
@@ -101,64 +113,78 @@ function Home() {
                 <div>
                     <Row className="justify-content-md-center ruk">
                         <Col xs="auto">
-                            <InputGroup >
-                                <InputGroup.Text id="basic-addon1"><span style={{ fontSize: "20px" }}>&#x2315;</span></InputGroup.Text>
-                                {/* <Form.Control
-                                    aria-label="RoomNumber"
-                                    aria-describedby="basic-addon1"
-                                /> */}
-                                <Form.Select onChange={handlerchange}>
-                                    <option value="0" >-- เลือกห้อง --</option>
-                                    {roomNumber.map((data, index) => {
-                                        return (
-                                            data.status && (
-                                                <option key={index} value={data.id}>{data.room_number}</option>
-                                            )
-                                        );
-                                    })}
-                                </Form.Select>
-                            </InputGroup>
+                            <input type="text" maxLength={3} className="search" placeholder="เลขห้อง เช่น 001" onChange={checkerRoom} />
+                            {/* <InputGroup >
+                                <InputGroup.Text id="basic-addon1">
+                                    <span style={{ fontSize: "20px" }}>&#x2315;</span>
+                                </InputGroup.Text> */}
+                            {/* <Form.Select onChange={handlerchange} >
+                                <option value="0" >-- เลือกห้อง --</option>
+                                {roomNumber.map((data, index) => {
+                                    return (
+                                        data.status && (
+                                            <option key={index} value={data.id}>{data.room_number}</option>
+                                        )
+                                    );
+                                })}
+                            </Form.Select> */}
+                            {/* </InputGroup> */}
                         </Col>
                     </Row>
                     <br></br>
-                    <br></br>
-                    <div className='home-table-bill'>
+                    {/* <br></br> */}
+                    <div className='home-table-bill '>
                         <table className='ta'>
-                            <tr className='t'>
-                                <th colSpan={4} className='b p' style={{ color: "white" }}>ใบเสร็จ</th>
-                            </tr>
-                            {/* <tr className='t'>
-                                <td className='b'>นายจำลอง    ประเสริฐพงษ์</td>
-                                <td className='b'>01/01/2566</td>
-                                <td className='b'>
-                                    <img src='./images/pdf.png'></img>
-                                    <br></br>
-                                    <Button variant="secondary">Down load PDF</Button>{' '}
-                                </td>
-                                <td></td>
-                            </tr> */}
-                            {reportList.map((data, index) => {
-                                return (
-                                    <tr className='t' key={index}>
-                                        <td className='b'>{data.fullname}</td>
-                                        <td className='b'>{formatDate(data.date_call)}</td>
-                                        {/* <td className='b'></td> */}
-                                        <td className='b'>
-                                            <img src='/images/pdf.png' alt='ruk' />
-                                            <br></br>
-                                            <GenReport dataCall={data} info={{ name: data.fullname, last_name: '' }}>
-                                                <Button variant="secondary">Down load PDF</Button>
-                                            </GenReport>
-                                        </td>
-                                        <td></td>
-                                    </tr>
-                                );
-                            })}
+                            <thead>
+                                <tr className='t'>
+                                    <th colSpan={4} className='b p' style={{ color: "white" }}><h3>ใบเสร็จ</h3></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {reportList.length < 1 && (
+                                    <>
+                                        <tr style={{ height: '20rem' }}>
+                                            <td colSpan={4} className="b">
+                                                <div className="center-position" style={{ padding: '10px' }}>
+                                                    <BsInboxesFill size={200} style={{ opacity: '0.5' }} />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </>
+                                )}
+                                {reportList.map((data, index) => {
+                                    return (
+                                        <tr className='t' key={index}>
+                                            <td className='b'><b>{index + 1}</b> </td>
+                                            {0 === index ?
+                                                <td className='b'>
+                                                    <strong>
+                                                        {data.fullname}
+                                                    </strong>
+                                                </td>
+                                                :
+                                                <td className="b" ></td>
+                                            }
+                                            <td className='b'>
+                                                <Badge bg="success" >
+                                                    {formatDate(data.date_call)}
+                                                </Badge>
+                                            </td>
+                                            <td className='b'>
+                                                <img src='/images/pdf.png' alt='ruk' />
+                                                <GenReport dataCall={data} info={{ name: data.fullname, last_name: '' }}>
+                                                    <Button variant="secondary" size="sm">Download</Button>
+                                                </GenReport>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
                         </table>
                     </div>
-                    <br></br>
-                    <br></br>
                 </div>
+                <br></br>
+                <br></br>
             </div>
             <hr className='line3'></hr>
             <br></br>

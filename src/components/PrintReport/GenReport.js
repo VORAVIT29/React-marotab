@@ -1,6 +1,5 @@
 import TemplteReport from './TemplteReport';
 import ReactToPrint from 'react-to-print';
-import { Button } from "react-bootstrap";
 import React from 'react';
 
 class GenReport extends React.Component {

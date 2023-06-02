@@ -18,25 +18,26 @@ function Main() {
         <>
             <CheckCookies />
 
-            <NavBar name="หน้าหลัก" />
+            <NavBar name={{ 'th': 'หน้าเจ้าของหอพัก', 'eng': 'Main' }} />
 
             <div className='grid-container'>
                 <div className="square" id='tenant-room' onClick={() => handleShow(true)}>
                     <div className='position-center'>
-                        ข้อมูลผู้เช่า
+                        {sessionStorage.getItem('languageENG') === 'true' ? 'Tenant information' : 'ข้อมูลผู้เช่า'}
                     </div>
                 </div>
                 <NavLink end to="/Back-End/Camera" className="square" id='camara'>
                     <div className='position-center'>
-                        กล้องถ่ายรูป
+                        {sessionStorage.getItem('languageENG') === 'true' ? 'Camera' : 'กล้องถ่ายรูป'}
                     </div>
                 </NavLink>
                 <NavLink end to="/Back-End/Call" className="square" id="call">
                     <div className='position-center'>
-                        คำนวณ
+                        {sessionStorage.getItem('languageENG') === 'true' ? 'Calculate' : 'คำนวณ'}
                     </div>
                 </NavLink>
             </div>
+
 
             {/* เปิดหน้าใหม่ข้อมูลผู้เช่า */}
             <TenantRoom show={show} fullscreen={fullscreen} onHide={() => setShow(false)} />

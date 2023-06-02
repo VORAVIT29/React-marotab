@@ -7,10 +7,13 @@ function SpinerLoad(props) {
         <>
             {showLoad && (
                 <div className='bg-load-spiner'>
-                    {/* Loading... */}
                     <div className='load-spiner'>
+                        {/* <Image src='/images/electric-meter.png' width={200} alt='' className='spiner' /> */}
                         <Spinner animation="border" variant="secondary" />&nbsp;&nbsp;
-                        กำลังโหลด...
+                        {/* กำลังโหลด... */}
+                        <div style={{ fontSize: '2.5rem', color: 'gray' }}>
+                            {sessionStorage.getItem('languageENG') === 'true' ? 'LOADING...' : 'กำลังโหลด...'}
+                        </div>
                     </div>
                 </div>
             )}

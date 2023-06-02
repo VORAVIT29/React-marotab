@@ -145,8 +145,8 @@ export const CameraPage = () => {
   return (
     <>
       <CheckCookies />
-      
-      <NavBar name="ถ่ายรูปหน้าปัดมิเตอร์" />
+
+      <NavBar name={{ 'th': "ถ่ายรูปหน้าปัดมิเตอร์", 'eng': 'Take a picture at the electric meter' }} />
       <SpinerLoad showLoad={showLoad} />
 
 
@@ -175,10 +175,15 @@ export const CameraPage = () => {
 
                 <Row md={4} className="justify-content-md-center">
                   <Col md="12" className="mb-2" >
-                    <Form.Label><BsBuildingFill /> เลือกห้อง</Form.Label>
+                    <Form.Label>
+                      <BsBuildingFill />&nbsp;
+                      {sessionStorage.getItem('languageENG') === 'true' ? 'Select Room' : 'เลือกห้อง'}
+                    </Form.Label>
                     <InputGroup className="mb-2">
                       <Form.Select name='room_number' defaultValue={img.room_number} onChange={selectRoomNumber}>
-                        <option value="0" >-- เลือกห้อง --</option>
+                        <option value="0" >
+                          {sessionStorage.getItem('languageENG') === 'true' ? '-- Select Room --' : '-- เลือกห้อง --'}
+                        </option>
                         {roomNumber.map((dataList, index) => {
                           return (
                             dataList.status && (
@@ -190,9 +195,8 @@ export const CameraPage = () => {
                         })}
                       </Form.Select>
                       <Button variant="light" onClick={() => findDataImgByRoomNumber(img.room_number)} >
-                        <BsSearch />
-                        &nbsp;
-                        Search...
+                        <BsSearch /> &nbsp;
+                        {sessionStorage.getItem('languageENG') === 'true' ? 'Search...' : 'ค้นหา...'}
                       </Button>
                     </InputGroup>
                   </Col>
@@ -203,7 +207,10 @@ export const CameraPage = () => {
 
                   {/* <Form.Group as={Row} className="mb-1"> */}
                   <Col md="12" className="mb-2">
-                    <Form.Label><BsPersonBoundingBox /> ผลการแสกน</Form.Label>
+                    <Form.Label>
+                      <BsPersonBoundingBox /> &nbsp;
+                      {sessionStorage.getItem('languageENG') === 'true' ? 'Scan results' : 'ผลการสแกน'}
+                    </Form.Label>
                     <InputGroup className="mb-3">
                       <Form.Control
                         type="text"
@@ -216,7 +223,7 @@ export const CameraPage = () => {
                       <Button variant="light" onClick={() => { imgToTextAPI(img.piture) }} >
                         <BsPersonBoundingBox />
                         &nbsp;
-                        Scan
+                        {sessionStorage.getItem('languageENG') === 'true' ? 'Scan' : 'สแกน'}
                       </Button>
                     </InputGroup>
                   </Col>
@@ -232,7 +239,7 @@ export const CameraPage = () => {
                     <Button variant="secondary" onClick={save} >
                       <BsSave />
                       &nbsp;
-                      Save
+                      {sessionStorage.getItem('languageENG') === 'true' ? 'Save' : 'บันทึก'}
                     </Button>
                   </Col>
                   <Col md="12" className="mt-5">
@@ -240,7 +247,11 @@ export const CameraPage = () => {
                   </Col>
                   <Col md="12" className="mt-2">
                     <center>
-                      <span><i>*ภาพตัวอย่างในการถ่าย</i></span>
+                      <span>
+                        <i>
+                          {sessionStorage.getItem('languageENG') === 'true' ? 'Preview (sample photo shot)' : '*ภาพตัวอย่างในการถ่าย'}
+                        </i>
+                      </span>
                     </center>
                   </Col>
                   {/* </Form.Group > */}
