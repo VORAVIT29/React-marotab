@@ -1,17 +1,14 @@
 import { BsInboxesFill } from "react-icons/bs";
-import InputGroup from 'react-bootstrap/InputGroup';
+import { InputGroup, Form, Row, Col } from 'react-bootstrap';
 import GenReport from '../PrintReport/GenReport';
 import { Connects } from '../../data/Connects';
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import Form from 'react-bootstrap/Form';
 import { th } from 'date-fns/locale';
 import { format } from 'date-fns';
 import axios from 'axios';
 import './Home.css';
 import Badge from 'react-bootstrap/Badge';
-
 
 function Home() {
     const [reportList, setReportList] = useState([]);
@@ -61,7 +58,8 @@ function Home() {
     }, []);
 
     return (
-        <div className='home'>
+        <>
+            {/* <div className='home'> */}
             <div className='home-marotab'>
                 <img className='img' src="/images/icon_wab.png" alt='' />
 
@@ -194,6 +192,7 @@ function Home() {
                 <h1>
                     <li className='home-mar'>มาร์โรแทบใช้เทคโนโลยีที่ล้ำสมัย</li>
                 </h1>
+                {/* <br></br>
                 <br></br>
                 <br></br>
                 <br></br>
@@ -204,11 +203,11 @@ function Home() {
                 <br></br>
                 <br></br>
                 <br></br>
-                <br></br>
-                <br></br>
+                <br></br> */}
 
-                <div className='home-vs'>
-                    <b>
+                {/* <div className='home-vs'> */}
+                <div className='container'>
+                    {/* <b>
                         <h1 className='home-text-vscode'>Visual Studio Code</h1>
                     </b>
                     <div>
@@ -218,10 +217,20 @@ function Home() {
                         VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด
                         ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น
                         ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
-                    </p>
+                    </p> */}
+                    <div className="description">
+                        <h1 className="home-title">Visual Studio Code</h1>
+                        <p>
+                            VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด
+                            ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น
+                            ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
+                        </p>
+                    </div>
+                    <img className="image" src="./images/vscore.png" alt="รูปภาพที่ 2" />
                 </div>
 
             </div>
+            {/* <br></br>
             <br></br>
             <br></br>
             <br></br>
@@ -233,14 +242,14 @@ function Home() {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
+            <br></br> */}
+
             <hr></hr>
             <div className='home-backgroud3-ocr'>
                 <img src="./images/ocr.png" className='home-ocr' />
+                {/* <br></br>
                 <br></br>
-                <br></br>
-                <br></br>
+                <br></br> */}
                 <div className='home-total-ocr'>
                     <b>
                         <h1 className='home-text-ocr'>Optical character recognition (OCR)</h1>
@@ -260,7 +269,10 @@ function Home() {
                 <br></br>
             </div>
             <hr></hr>
-            <div className='home-sql'>
+
+            {/* <div className='home-sql'> */}
+            <div className='container'>
+                {/* <img src='./images/sql sever.png' alt="" />
                 <br></br>
                 <br></br>
                 <br></br>
@@ -274,12 +286,9 @@ function Home() {
                 <br></br>
                 <br></br>
                 <div className='home-text-sql'>
-                    <b>
-                        <h1 className='home-head-sql'>Microsoft SQL Server</h1>
-                    </b>
-                    <div>
-                        <img src='./images/sql sever.png' className='home-img-sql'></img>
+                    <div className='home-img-sql'>
                     </div>
+                    <b><h1 className='home-head-sql'>Microsoft SQL Server</h1></b>
                     <p className='home-bg-text-sql'>
                         นำเสนอฐานข้อมูลที่ซับซ้อนให้ผู้ใช้งานเข้าใจได้ง่าย
                         โดยใช้ Database Engine สร้างตารางเก็บข้อมูล
@@ -287,10 +296,21 @@ function Home() {
                         เพื่อจะเชื่อมต่อฐานข้อมูล SQL Server ให้ python
                         ดึงข้อมูลที่ต้องการใช้งาน
                     </p>
+                </div> */}
+                <img className="image" src="./images/sql sever.png" alt="รูปภาพที่ 1" />
+                <div className="description">
+                    <h1 className="home-title">Microsoft SQL Server</h1>
+                    <p>
+                        นำเสนอฐานข้อมูลที่ซับซ้อนให้ผู้ใช้งานเข้าใจได้ง่าย
+                        โดยใช้ Database Engine สร้างตารางเก็บข้อมูล
+                        และภาษาในการเขียนด้วย SQL ส่วนที่ทำในเว็บไซต์นี้ขึ้น
+                        เพื่อจะเชื่อมต่อฐานข้อมูล SQL Server ให้ python
+                        ดึงข้อมูลที่ต้องการใช้งาน
+                    </p>
                 </div>
-
-
             </div>
+
+            {/* <br></br>
             <br></br>
             <br></br>
             <br></br>
@@ -302,8 +322,7 @@ function Home() {
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
-            <br></br>
+            <br></br> */}
             <div className='home-context'>
                 <b>
                     <h1>
@@ -316,21 +335,45 @@ function Home() {
                 <br></br>
                 <br></br>
                 <p className='home-tel'>
-                    <img src='./images/tel.png'></img>
+                    <img src='./images/tel.png' alt=""></img>
                     :        086-792-1504
                 </p>
                 <p className='home-face'>
-                    <img src='./images/face.png'></img>
+                    <img src='./images/face.png' alt=""></img>
                     :     LooktaLUCK@hotmail.com
                 </p>
                 <p className='home-line'>
-                    <img src='./images/line1.png'></img>
+                    <img src='./images/line1.png' alt=""></img>
                     :   @lookTaPeech
                 </p>
                 <br></br>
             </div>
-        </div >
+            {/* </div > */}
 
+            {/* <div className="container">
+                <img className="image" src="./images/sql sever.png" alt="รูปภาพที่ 1" />
+                <div className="description">
+                    <h2>คำอธิบายรูปภาพที่ 1</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus, tortor ac iaculis dignissim, neque lectus tincidunt nisl, sed viverra odio neque id enim.</p>
+                </div>
+            </div>
+
+            <div className="container">
+                <div className="description">
+                    <h2>คำอธิบายรูปภาพที่ 2</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus, tortor ac iaculis dignissim, neque lectus tincidunt nisl, sed viverra odio neque id enim.</p>
+                </div>
+                <img className="image" src="./images/vscore.png" alt="รูปภาพที่ 2" />
+            </div>
+
+            <div className="container">
+                <img className="image" src="./images/vscore.png" alt="รูปภาพที่ 3" />
+                <div className="description">
+                    <h2>คำอธิบายรูปภาพที่ 3</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus, tortor ac iaculis dignissim, neque lectus tincidunt nisl, sed viverra odio neque id enim.</p>
+                </div>
+            </div> */}
+        </>
     );
 }
 

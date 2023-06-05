@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -90,8 +89,18 @@ input:valid~label {
     top: 20px;
 }
 
+.incorrect {
+    /* display: grid; */
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* place-items: center; */
+    margin-bottom: 20px;
+    color: red;
+}
+
 .forget {
-    margin: -15px 0 15px;
+    margin: -15px 0 0px;
     font-size: .9em;
     color: #fff;
     display: flex;

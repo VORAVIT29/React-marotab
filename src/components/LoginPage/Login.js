@@ -5,10 +5,15 @@ import axios from 'axios';
 import './Login.css'
 import Cookies from 'js-cookie';
 import { CheckCookies } from '../CookiesLogin/CheckCookies';
+import { BsExclamationCircle } from 'react-icons/bs';
+import SpinerLoad from '../SpinerLoadPage/SpinerLoad';
+import { Spinner } from 'react-bootstrap';
 
 function Login() {
     const [values, setValue] = useState({ username: '', password: '' });
     const [isRedirect, setIsRedirect] = useState(false);
+    const [incorrect, setIncorrect] = useState(false);
+    const [spinerLoad, setSpinerLoad] = useState(false);
     const navigate = useNavigate();
 
     function handleChange(event) {
@@ -17,6 +22,7 @@ function Login() {
     }
 
     function login(event) {
+        setSpinerLoad(true);
         axios.post(`${Connects.HOST_NAME}/check-login`, values)
             .then((response) => {
                 const status = response.data.status;
@@ -28,16 +34,26 @@ function Login() {
                     const json = { 'status': status, 'id': result };
                     Cookies.set('Login', JSON.stringify(json), { expires: 7 });
                 }
+                else {
+                    setIncorrect(true);
+                    setTimeout(() => { setIncorrect(false) }, 10000);
+                }
             })
             .catch((error) => {
-                // console.log(error.message);
+                console.error(error);
+            })
+            .finally(() => {
+                setSpinerLoad(false)
             });
+
         event.preventDefault();
     }
 
     if (isRedirect) {
         // Redirect to route
-        return navigate("/Back-End/Main");
+        setTimeout(() => {
+            return navigate("/Back-End/Main");
+        }, 800);
     }
 
     return (
@@ -62,9 +78,27 @@ function Login() {
                                     <p>
                                         <Link to="/back-end/forget">Forget Password</Link>
                                     </p>
-
                                 </div>
-                                <button className='btn-submit'>Log in</button>
+                                {incorrect && (
+                                    <div className='incorrect'>
+                                        <BsExclamationCircle />&nbsp;<strong>Username or Password is incorrect!</strong>
+                                    </div>
+                                )}
+                                <button className='btn-submit'>
+                                    {spinerLoad ?
+                                        <Spinner
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        />
+                                        :
+                                        'Log in'
+                                    }
+
+
+                                </button>
                                 <div className="register">
                                     <p>
                                         Don't have a account <Link to="/back-end/register">Register</Link>

@@ -236,19 +236,19 @@ function TenantRoom(props) {
 
                                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextName">
                                         <Form.Label column sm="4" className='align-right'>
-                                            {sessionStorage.getItem('languageENG') === 'true' ? 'Name' : 'ชื่อ'}
+                                            {sessionStorage.getItem('languageENG') === 'true' ? 'First Name' : 'ชื่อ'}
                                         </Form.Label>
                                         <Col sm="7">
-                                            <Form.Control placeholder={sessionStorage.getItem('languageENG') === 'true' ? 'Name' : 'ชื่อ'} type='text' name='name' value={tenantRoomValue.name} onChange={setValue} required />
+                                            <Form.Control placeholder={sessionStorage.getItem('languageENG') === 'true' ? 'First Name' : 'ชื่อ'} type='text' name='name' value={tenantRoomValue.name} onChange={setValue} required />
                                         </Col>
                                     </Form.Group>
 
                                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextSurname">
                                         <Form.Label column sm="4" className='align-right'>
-                                            {sessionStorage.getItem('languageENG') === 'true' ? 'Surname' : 'นามสกุล'}
+                                            {sessionStorage.getItem('languageENG') === 'true' ? 'Last Name' : 'นามสกุล'}
                                         </Form.Label>
                                         <Col sm="7">
-                                            <Form.Control placeholder={sessionStorage.getItem('languageENG') === 'true' ? 'Surname' : 'นามสกุล'} type='text' name='last_name' value={tenantRoomValue.last_name} onChange={setValue} required />
+                                            <Form.Control placeholder={sessionStorage.getItem('languageENG') === 'true' ? 'Last Name' : 'นามสกุล'} type='text' name='last_name' value={tenantRoomValue.last_name} onChange={setValue} required />
                                         </Col>
                                     </Form.Group>
 

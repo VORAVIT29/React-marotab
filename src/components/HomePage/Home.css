@@ -1,8 +1,8 @@
-.home {
+/* .home {
     display: contents;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-}
+} */
 
 .home-marotab {
     width: 100%;
@@ -124,10 +124,15 @@
 }
 
 .home-vs {
-    width: 40%;
+    /* width: 40%;
     height: 40%;
     text-align: left;
-    margin-left: 10%;
+    margin-left: 10%; */
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    height: 100vh;
 }
 
 .home-text-vscode {
@@ -170,10 +175,15 @@
 }
 
 .home-sql {
-    max-width: 100%;
-    height: 40%;
-    text-align: left;
-    margin-left: 5%;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    height: 100vh;
+    /* grid-gap: 20px; */
+    /* max-width: 100%; */
+    /* text-align: left; */
+    /* margin-left: 5%; */
 }
 
 .home-text-sql {
@@ -183,12 +193,17 @@
 }
 
 .home-head-sql {
-    max-width: 100%;
+    /* width: 100%; */
     height: auto;
     margin-left: -10%;
     text-align: left;
     color: #6D5A3D;
     /* background-color: red; */
+}
+
+.home-title {
+    text-align: left;
+    color: #6D5A3D;
 }
 
 .home-img-sql {
@@ -259,7 +274,7 @@
 }
 
 .search:focus-visible {
-    outline:none;
+    outline: none;
     border: 2px solid black;
 }
 
@@ -305,13 +320,13 @@
     }
 
     .home-img-sql {
-        text-align: center;
+        /* text-align: center; */
+        /* display: flex;
         align-items: center;
-        max-width: 100%;
-        height: 100%;
-        display: flex;
         justify-content: center;
-        margin: -200% -50%;
+        width: 100vw;
+        height: 100vh;
+        margin: -200% -50%; */
     }
 
     .home-bg-text-sql {
@@ -389,4 +404,21 @@
         padding-left: calc(100% / 3.5);
     }
 
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    /* height: 100vh; */
+}
+
+.image {
+    width: 300px;
+    margin-right: 20px;
+}
+
+.description {
+    margin-left: 20px;
 }
