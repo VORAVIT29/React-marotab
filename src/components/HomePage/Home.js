@@ -206,7 +206,7 @@ function Home() {
                 <br></br> */}
 
                 {/* <div className='home-vs'> */}
-                <div className='container'>
+                <div className='home-container'>
                     {/* <b>
                         <h1 className='home-text-vscode'>Visual Studio Code</h1>
                     </b>
@@ -218,7 +218,7 @@ function Home() {
                         ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น
                         ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
                     </p> */}
-                    <div className="description">
+                    <div className="home-description">
                         <h1 className="home-title">Visual Studio Code</h1>
                         <p>
                             VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด
@@ -226,7 +226,7 @@ function Home() {
                             ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
                         </p>
                     </div>
-                    <img className="image" src="./images/vscore.png" alt="รูปภาพที่ 2" />
+                    <img className="home-image" src="./images/vscore.png" alt="รูปภาพที่ 2" />
                 </div>
 
             </div>

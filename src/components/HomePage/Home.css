@@ -406,7 +406,7 @@
 
 }
 
-.container {
+.home-container {
     display: grid;
     place-items: center;
     grid-template-columns: repeat(2, 1fr);
@@ -414,11 +414,11 @@
     /* height: 100vh; */
 }
 
-.image {
+.home-image {
     width: 300px;
     margin-right: 20px;
 }
 
-.description {
+.home-description {
     margin-left: 20px;
 }
