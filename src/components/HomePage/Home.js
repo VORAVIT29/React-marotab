@@ -59,29 +59,32 @@ function Home() {
 
     return (
         <>
-            {/* <div className='home'> */}
             <div className='home-marotab'>
                 <img className='img' src="/images/icon_wab.png" alt='' />
 
                 <div className='home-w'>
                     <span>
-                        Website for calculating <br />
-                        electricity bill by scanning <br />
-                        mobile camera.
+                        <strong>
+                            Website for calculating
+                            electricity bill by scanning
+                            mobile camera.
+                        </strong>
                     </span>
                 </div>
-                <div>
+                <div className="ma">
                     <b>
-                        <h1 className='ma'>มาร์โรแทบ</h1>
+                        <h1>มาร์โรแทบ</h1>
                     </b>
 
                 </div>
 
                 <div className='wed'>
                     <span>
-                        เว็บไซต์สำหรับเจ้าของหอพักช่วยคำนวณค่าไฟฟ้า
-                        ในแต่ละเดือนด้วยกล้องโทรศัพท์มือถือ
-                        ลดระยะเวลาการจดค่าไฟฟ้าตามห้องพัก
+                        <strong>
+                            เว็บไซต์สำหรับเจ้าของหอพักช่วยคำนวณค่าไฟฟ้า
+                            ในแต่ละเดือนด้วยกล้องโทรศัพท์มือถือ
+                            ลดระยะเวลาการจดค่าไฟฟ้าตามห้องพัก
+                        </strong>
                     </span>
                     <hr className='line1'></hr>
                 </div>
@@ -90,17 +93,11 @@ function Home() {
                 <br></br>
             </div>
 
-            <br></br>
+            {/* <br></br> */}
             <br></br>
             <hr className='line'></hr>
 
             <div className='unit'>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
                 <br></br>
                 <br></br>
                 <h1 className='bill'>
@@ -109,28 +106,12 @@ function Home() {
                 <br></br>
 
                 <div>
-                    <Row className="justify-content-md-center ruk">
-                        <Col xs="auto">
+                    <Row className="justify-content-md-center">
+                        <Col className="center-position">
                             <input type="text" maxLength={3} className="search" placeholder="เลขห้อง เช่น 001" onChange={checkerRoom} />
-                            {/* <InputGroup >
-                                <InputGroup.Text id="basic-addon1">
-                                    <span style={{ fontSize: "20px" }}>&#x2315;</span>
-                                </InputGroup.Text> */}
-                            {/* <Form.Select onChange={handlerchange} >
-                                <option value="0" >-- เลือกห้อง --</option>
-                                {roomNumber.map((data, index) => {
-                                    return (
-                                        data.status && (
-                                            <option key={index} value={data.id}>{data.room_number}</option>
-                                        )
-                                    );
-                                })}
-                            </Form.Select> */}
-                            {/* </InputGroup> */}
                         </Col>
                     </Row>
                     <br></br>
-                    {/* <br></br> */}
                     <div className='home-table-bill '>
                         <table className='ta'>
                             <thead>
@@ -192,64 +173,24 @@ function Home() {
                 <h1>
                     <li className='home-mar'>มาร์โรแทบใช้เทคโนโลยีที่ล้ำสมัย</li>
                 </h1>
-                {/* <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br> */}
-
-                {/* <div className='home-vs'> */}
                 <div className='home-container'>
-                    {/* <b>
-                        <h1 className='home-text-vscode'>Visual Studio Code</h1>
-                    </b>
-                    <div>
-                        <img className='home-img-vs' src="./images/vscore.png" />
-                    </div>
-                    <p className='home-text-img-text'>
-                        VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด
-                        ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น
-                        ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
-                    </p> */}
                     <div className="home-description">
-                        <h1 className="home-title">Visual Studio Code</h1>
-                        <p>
+                        {/* <div className="home-text-vs"> */}
+                        <h1 className="home-title home-text-vs-format">Visual Studio Code</h1>
+                        <p className="home-text-vs-format">
                             VS Code เป็นโปรแกรม Text Editor ที่ใช้ในการแก้ไขและปรับแต่งโค้ด
                             ที่มีประสิทธิภาพสูง รองรับการเปิดใช้งานภาษาอื่น ๆ ในตัวเว็ปไซต์ที่สร้างขึ้น
                             ใช้ภาษา เช่น CSS, HTML, JavaScript และ React
                         </p>
+                        {/* </div> */}
                     </div>
                     <img className="home-image" src="./images/vscore.png" alt="รูปภาพที่ 2" />
                 </div>
 
             </div>
-            {/* <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br> */}
-
             <hr></hr>
             <div className='home-backgroud3-ocr'>
-                <img src="./images/ocr.png" className='home-ocr' />
-                {/* <br></br>
-                <br></br>
-                <br></br> */}
+                <img src="./images/ocr.png" className='home-ocr' alt="" />
                 <div className='home-total-ocr'>
                     <b>
                         <h1 className='home-text-ocr'>Optical character recognition (OCR)</h1>
@@ -270,35 +211,9 @@ function Home() {
             </div>
             <hr></hr>
 
-            {/* <div className='home-sql'> */}
-            <div className='container'>
-                {/* <img src='./images/sql sever.png' alt="" />
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <div className='home-text-sql'>
-                    <div className='home-img-sql'>
-                    </div>
-                    <b><h1 className='home-head-sql'>Microsoft SQL Server</h1></b>
-                    <p className='home-bg-text-sql'>
-                        นำเสนอฐานข้อมูลที่ซับซ้อนให้ผู้ใช้งานเข้าใจได้ง่าย
-                        โดยใช้ Database Engine สร้างตารางเก็บข้อมูล
-                        และภาษาในการเขียนด้วย SQL ส่วนที่ทำในเว็บไซต์นี้ขึ้น
-                        เพื่อจะเชื่อมต่อฐานข้อมูล SQL Server ให้ python
-                        ดึงข้อมูลที่ต้องการใช้งาน
-                    </p>
-                </div> */}
-                <img className="image" src="./images/sql sever.png" alt="รูปภาพที่ 1" />
-                <div className="description">
+            <div className='home-container'>
+                <img className="home-image" src="./images/sql sever.png" alt="รูปภาพที่ 1" />
+                <div className="home-description">
                     <h1 className="home-title">Microsoft SQL Server</h1>
                     <p>
                         นำเสนอฐานข้อมูลที่ซับซ้อนให้ผู้ใช้งานเข้าใจได้ง่าย
@@ -309,70 +224,29 @@ function Home() {
                     </p>
                 </div>
             </div>
-
-            {/* <br></br>
             <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br> */}
             <div className='home-context'>
                 <b>
-                    <h1>
-                        <li>ติดต่อเรา</li>
-                    </h1>
+                    <h1><li>ติดต่อเรา</li></h1>
                 </b>
             </div>
             <hr></hr>
             <div className='home-context-tel'>
                 <br></br>
-                <br></br>
                 <p className='home-tel'>
-                    <img src='./images/tel.png' alt=""></img>
-                    :        086-792-1504
+                    <img src='./images/tel.png' width={50} alt="tel" />
+                    : 086-792-1504
                 </p>
                 <p className='home-face'>
-                    <img src='./images/face.png' alt=""></img>
-                    :     LooktaLUCK@hotmail.com
+                    <img src='./images/face.png' width={50} alt="face" />
+                    : LooktaLUCK@hotmail.com
                 </p>
                 <p className='home-line'>
-                    <img src='./images/line1.png' alt=""></img>
-                    :   @lookTaPeech
+                    <img src='./images/line1.png' width={50} alt="line" />
+                    : @lookTaPeech
                 </p>
                 <br></br>
             </div>
-            {/* </div > */}
-
-            {/* <div className="container">
-                <img className="image" src="./images/sql sever.png" alt="รูปภาพที่ 1" />
-                <div className="description">
-                    <h2>คำอธิบายรูปภาพที่ 1</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus, tortor ac iaculis dignissim, neque lectus tincidunt nisl, sed viverra odio neque id enim.</p>
-                </div>
-            </div>
-
-            <div className="container">
-                <div className="description">
-                    <h2>คำอธิบายรูปภาพที่ 2</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus, tortor ac iaculis dignissim, neque lectus tincidunt nisl, sed viverra odio neque id enim.</p>
-                </div>
-                <img className="image" src="./images/vscore.png" alt="รูปภาพที่ 2" />
-            </div>
-
-            <div className="container">
-                <img className="image" src="./images/vscore.png" alt="รูปภาพที่ 3" />
-                <div className="description">
-                    <h2>คำอธิบายรูปภาพที่ 3</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus, tortor ac iaculis dignissim, neque lectus tincidunt nisl, sed viverra odio neque id enim.</p>
-                </div>
-            </div> */}
         </>
     );
 }
