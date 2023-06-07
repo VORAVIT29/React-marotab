@@ -126,7 +126,7 @@ class TemplteReport extends React.Component {
                                             <td></td>
                                             <td colSpan={2} ></td>
                                             {/* <td colSpan={6} rowSpan={2} style={{ background: 'red' }}> */}
-                                            <td colSpan={6} style={{ background: 'red' }}>
+                                            <td colSpan={6}>
                                                 <center>
                                                     {/* <div style={{ width: '100%', height: '100%', position: 'relative' }}> */}
                                                     {/* <div style={{ width: '100%', height: '100%' }}> */}
@@ -137,7 +137,7 @@ class TemplteReport extends React.Component {
                                                     {/* <tr valign="top" style={{ height: '83px' }}>
                                                         <td style={{ pointerEvents: 'auto', textIndent: '0px', textAlign: 'left' }}> */}
                                                     <span style={{
-                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '48px', fontWeight: 'bold'
+                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '40px', fontWeight: 'bold'
                                                     }}>
                                                         <u>
                                                             ใบเสร็จ
