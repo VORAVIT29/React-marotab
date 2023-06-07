@@ -142,7 +142,7 @@ class TemplteReport extends React.Component {
                                                                 {/* <td style={{ pointerEvents: 'auto', textIndent: '0px', textAlign: 'left' }}> */}
                                                                 <td style={{ textAlign: 'left' }}>
                                                                     <span style={{
-                                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '20px', fontWeight: 'bold'
+                                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '6vw', fontWeight: 'bold'
                                                                     }}>&nbsp;ใบเสร็จ</span>
                                                                 </td>
                                                             </tr>
