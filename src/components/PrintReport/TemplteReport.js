@@ -134,22 +134,20 @@ class TemplteReport extends React.Component {
                                                             emptyCells: 'show', width: '100%',
                                                             borderCollapse: 'collapse'
                                                         }}>
-                                                            <tbody>
-                                                                <tr valign="top" style={{ height: 0 }}>
-                                                                    <td style={{ width: '140px' }} />
-                                                                </tr>
-                                                                <tr valign="top" style={{ height: '83px' }}>
-                                                                    <td style={{ pointerEvents: 'auto', textIndent: '0px', textAlign: 'left' }}>
-                                                                        <span style={{
-                                                                            fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '48px',
-                                                                            '@media (max-width: 420px)': {
-                                                                                fontSize: '24px',
-                                                                            },
-                                                                            lineHeight: '1.1300024', fontWeight: 'bold'
-                                                                        }}>&nbsp;ใบเสร็จ</span>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
+                                                            {/* <tbody> */}
+                                                            <tr valign="top" style={{ height: 0 }}>
+                                                                <td style={{ width: '140px' }} />
+                                                            </tr>
+                                                            <tr valign="top" style={{ height: '83px' }}>
+                                                                {/* <td style={{ pointerEvents: 'auto', textIndent: '0px', textAlign: 'left' }}> */}
+                                                                <td style={{ textAlign: 'left' }}>
+                                                                    <span style={{
+                                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '290%',
+                                                                        lineHeight: '1.1300024', fontWeight: 'bold'
+                                                                    }}>&nbsp;ใบเสร็จ</span>
+                                                                </td>
+                                                            </tr>
+                                                            {/* </tbody> */}
                                                         </table>
                                                     </div>
                                                     <div style={{ position: 'relative', width: '100%', height: '100%', pointerEvents: 'none' }}>
