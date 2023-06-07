@@ -79,6 +79,7 @@ class TemplteReport extends React.Component {
                                                         </table>
                                                     </div>
                                                     <div style={{ position: 'relative', width: '100%', height: '100%', pointerEvents: 'none' }}>
+                                                        {/* QR CODE */}
                                                         <table cellPadding={0} cellSpacing={0} border={0} style={{
                                                             emptyCells: 'show', width: '100%',
                                                             borderCollapse: 'collapse'
@@ -99,8 +100,7 @@ class TemplteReport extends React.Component {
                                                                         <span style={{
                                                                             fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '16px',
                                                                             lineHeight: '1.1300023', fontWeight: 'bold'
-                                                                        }}>QR
-                                                                            code ชำระเงิน</span>
+                                                                        }}>QR code ชำระเงิน</span>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -123,33 +123,30 @@ class TemplteReport extends React.Component {
                                             </td>
                                         </tr>
                                         <tr valign="top" style={{ height: '71px' }}>
-                                            <td>
-                                            </td>
-                                            <td colSpan={4}>
-                                            </td>
-                                            <td colSpan={2} rowSpan={2}>
-                                                <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-                                                    <div style={{ position: 'absolute', overflow: 'hidden', width: '100%', height: '100%' }}>
-                                                        <table cellPadding={0} cellSpacing={0} border={0} style={{
-                                                            emptyCells: 'show', width: '100%',
-                                                            borderCollapse: 'collapse'
-                                                        }}>
-                                                            {/* <tbody> */}
-                                                            <tr valign="top" style={{ height: 0 }}>
-                                                                <td style={{ width: '140px' }} />
-                                                            </tr>
-                                                            <tr valign="top" style={{ height: '83px' }}>
-                                                                {/* <td style={{ pointerEvents: 'auto', textIndent: '0px', textAlign: 'left' }}> */}
-                                                                <td style={{ textAlign: 'left' }}>
-                                                                    <span style={{
-                                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '6vw', fontWeight: 'bold'
-                                                                    }}>&nbsp;ใบเสร็จ</span>
-                                                                </td>
-                                                            </tr>
-                                                            {/* </tbody> */}
-                                                        </table>
-                                                    </div>
-                                                    <div style={{ position: 'relative', width: '100%', height: '100%', pointerEvents: 'none' }}>
+                                            <td></td>
+                                            <td colSpan={2} ></td>
+                                            {/* <td colSpan={6} rowSpan={2} style={{ background: 'red' }}> */}
+                                            <td colSpan={6} style={{ background: 'red' }}>
+                                                <center>
+                                                    {/* <div style={{ width: '100%', height: '100%', position: 'relative' }}> */}
+                                                    {/* <div style={{ width: '100%', height: '100%' }}> */}
+                                                    {/* <div style={{ position: 'absolute', overflow: 'hidden', width: '100%', height: '100%' }}> */}
+                                                    {/* <tr valign="top" style={{ height: 0 }}>
+                                                        <td style={{ width: '140px' }} />
+                                                    </tr> */}
+                                                    {/* <tr valign="top" style={{ height: '83px' }}>
+                                                        <td style={{ pointerEvents: 'auto', textIndent: '0px', textAlign: 'left' }}> */}
+                                                    <span style={{
+                                                        fontFamily: 'TH SarabunPSK', color: '#000000', fontSize: '48px', fontWeight: 'bold'
+                                                    }}>
+                                                        <u>
+                                                            ใบเสร็จ
+                                                        </u>
+                                                    </span>
+                                                    {/* </td>
+                                                    </tr> */}
+                                                    {/* </div> */}
+                                                    {/* <div style={{ position: 'relative', width: '100%', height: '100%', pointerEvents: 'none' }}>
                                                         <table cellPadding={0} cellSpacing={0} border={0} style={{
                                                             emptyCells: 'show', width: '100%',
                                                             borderCollapse: 'collapse'
@@ -181,13 +178,12 @@ class TemplteReport extends React.Component {
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-                                                    </div>
-                                                </div>
+                                                    </div> */}
+                                                    {/* </div> */}
+                                                </center>
                                             </td>
-                                            <td colSpan={3}>
-                                            </td>
-                                            <td>
-                                            </td>
+                                            <td colSpan={1} ></td>
+                                            {/* <td></td> */}
                                         </tr>
                                         <tr valign="top" style={{ height: '12px' }}>
                                             <td colSpan={7}>
@@ -621,7 +617,7 @@ class TemplteReport extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div >
         );
     }
 }
