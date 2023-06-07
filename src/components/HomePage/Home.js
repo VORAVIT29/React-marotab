@@ -113,60 +113,60 @@ function Home() {
                     </Row>
                     <br></br>
                     {/* -------- Table -------- */}
-                    <div className='home-table-bill'>
-                        <table className='ta'>
-                            <thead>
-                                <tr className='t'>
-                                    <th colSpan={4} className='b p' style={{ color: "white" }}><h3>ใบเสร็จ</h3></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {reportList.length < 1 && (
-                                    <>
-                                        <tr style={{ height: '20rem' }}>
-                                            <td colSpan={4} className="b">
-                                                <div className="center-position" style={{ padding: '10px' }}>
-                                                    <BsInboxesFill size={200} style={{ opacity: '0.5' }} />
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </>
-                                )}
-                                {reportList.map((data, index) => {
-                                    return (
-                                        <tr className='t' key={index}>
-                                            <td className='b'><b>{index + 1}</b> </td>
-                                            {0 === index ?
-                                                <td className='b'>
-                                                    <strong>
-                                                        {data.fullname}
-                                                    </strong>
+                        <div className='home-table-bill'>
+                            <table className='ta'>
+                                <thead>
+                                    <tr className='t'>
+                                        <th colSpan={4} className='b p' style={{ color: "white" }}><h3>ใบเสร็จ</h3></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {reportList.length < 1 && (
+                                        <>
+                                            <tr style={{ height: '20rem' }}>
+                                                <td colSpan={4} className="b">
+                                                    <div className="center-position" style={{ padding: '10px' }}>
+                                                        <BsInboxesFill size={200} style={{ opacity: '0.5' }} />
+                                                    </div>
                                                 </td>
-                                                :
-                                                <td className="b" ></td>
-                                            }
-                                            <td className='b'>
-                                                <Badge bg="success" >
-                                                    {formatDate(data.date_call)}
-                                                </Badge>
-                                            </td>
-                                            <td className='b'>
-                                                <img src='/images/pdf.png' alt='ruk' />
-                                                <GenReport dataCall={data} info={{ name: data.fullname, last_name: '' }}>
-                                                    <Button variant="secondary" size="sm">Download</Button>
-                                                </GenReport>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
+                                            </tr>
+                                        </>
+                                    )}
+                                    {reportList.map((data, index) => {
+                                        return (
+                                            <tr className='t' key={index}>
+                                                <td className='b'><b>{index + 1}</b> </td>
+                                                {0 === index ?
+                                                    <td className='b'>
+                                                        <strong>
+                                                            {data.fullname}
+                                                        </strong>
+                                                    </td>
+                                                    :
+                                                    <td className="b" ></td>
+                                                }
+                                                <td className='b'>
+                                                    <Badge bg="success" >
+                                                        {formatDate(data.date_call)}
+                                                    </Badge>
+                                                </td>
+                                                <td className='b'>
+                                                    <img src='/images/pdf.png' alt='ruk' />
+                                                    <GenReport dataCall={data} info={{ name: data.fullname, last_name: '' }}>
+                                                        <Button variant="secondary" size="sm">Download</Button>
+                                                    </GenReport>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
                     {/* -------- End Table -------- */}
                 </div>
                 <br></br>
                 <br></br>
-            </div>
+            </div >
             <hr className='line3'></hr>
             <br></br>
             <br></br>
