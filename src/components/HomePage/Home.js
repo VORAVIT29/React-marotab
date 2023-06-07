@@ -112,7 +112,8 @@ function Home() {
                         </Col>
                     </Row>
                     <br></br>
-                    <div className='home-table-bill '>
+                    {/* -------- Table -------- */}
+                    <div className='home-table-bill'>
                         <table className='ta'>
                             <thead>
                                 <tr className='t'>
@@ -161,6 +162,7 @@ function Home() {
                             </tbody>
                         </table>
                     </div>
+                    {/* -------- End Table -------- */}
                 </div>
                 <br></br>
                 <br></br>
