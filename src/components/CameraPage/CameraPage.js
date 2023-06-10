@@ -40,8 +40,11 @@ export const CameraPage = () => {
   }
 
   function imgToTextAPI(img64) {
+    // clear textures
+    img.unit_present = '';
+
     setShowLoad(true);
-    axios.post(`https://marotab-python-l5xl7xlxna-et.a.run.app/img-to-text`, { 'url_img': img64 })
+    axios.post(`${Connects.HOST_NAME_OCR}`, { 'url_img': img64 })
       .then((response) => {
         const status = response.data.status;
         const result = response.data.result;
@@ -74,9 +77,12 @@ export const CameraPage = () => {
     await setPage();
   }
 
-  function selectRoomNumber(event) {
+  async function selectRoomNumber(event) {
     const { value, name } = event.target;
     setImg({ ...img, [name]: value });
+
+    // find data camera
+    await findDataImgByRoomNumber(value);
   }
 
   async function findDataImgByRoomNumber(roomNumber) {
@@ -157,7 +163,7 @@ export const CameraPage = () => {
         <>
           <Container className="mt-5">
             <Row md={4} className="justify-content-md-center">
-              <Col md="8" className="mb-2">
+              <Col md="8" className="mb-2" style={{ display: 'grid', placeContent: 'center' }}>
 
                 <center>
                   {/* className="camera" */}
@@ -169,6 +175,7 @@ export const CameraPage = () => {
                   }
                   <Button variant="dark" onClick={setPage} style={{ margin: "3%" }}><BsFillCameraFill /></Button>
                 </center>
+
               </Col>
 
               <Col md="4" className="mb-2 bg-container">
@@ -179,26 +186,26 @@ export const CameraPage = () => {
                       <BsBuildingFill />&nbsp;
                       {sessionStorage.getItem('languageENG') === 'true' ? 'Select Room' : 'เลือกห้อง'}
                     </Form.Label>
-                    <InputGroup className="mb-2">
-                      <Form.Select name='room_number' defaultValue={img.room_number} onChange={selectRoomNumber}>
-                        <option value="0" >
-                          {sessionStorage.getItem('languageENG') === 'true' ? '-- Select Room --' : '-- เลือกห้อง --'}
-                        </option>
-                        {roomNumber.map((dataList, index) => {
-                          return (
-                            dataList.status && (
-                              <option key={index} value={dataList.id} >
-                                {dataList.room_number}
-                              </option>
-                            )
+                    {/* <InputGroup className="mb-2"> */}
+                    <Form.Select name='room_number' defaultValue={img.room_number} onChange={selectRoomNumber}>
+                      <option value="0" >
+                        {sessionStorage.getItem('languageENG') === 'true' ? '-- Select Room --' : '-- เลือกห้อง --'}
+                      </option>
+                      {roomNumber.map((dataList, index) => {
+                        return (
+                          dataList.status && (
+                            <option key={index} value={dataList.id} >
+                              {dataList.room_number}
+                            </option>
                           )
-                        })}
-                      </Form.Select>
-                      <Button variant="light" onClick={() => findDataImgByRoomNumber(img.room_number)} >
-                        <BsSearch /> &nbsp;
-                        {sessionStorage.getItem('languageENG') === 'true' ? 'Search...' : 'ค้นหา...'}
-                      </Button>
-                    </InputGroup>
+                        )
+                      })}
+                    </Form.Select>
+                    {/* <Button variant="light" onClick={() => findDataImgByRoomNumber(img.room_number)} >
+                      <BsSearch /> &nbsp;
+                      {sessionStorage.getItem('languageENG') === 'true' ? 'Search...' : 'ค้นหา...'}
+                    </Button> */}
+                    {/* </InputGroup> */}
                   </Col>
                 </Row>
 

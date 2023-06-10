@@ -1,14 +1,40 @@
+import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat, BsArrowRepeat, BsCrop } from "react-icons/bs";
 import Camera, { FACING_MODES } from 'react-html5-camera-photo';
-import { Button, Image, Modal } from 'react-bootstrap';
+import { Button, Col, Modal, Row, Image as ImageBootstrap } from 'react-bootstrap';
 import 'react-html5-camera-photo/build/css/index.css';
-import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat, BsArrowRepeat } from "react-icons/bs";
+import 'react-image-crop/dist/ReactCrop.css';
 import React, { useState } from 'react';
+import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop'
+
+// Load crop defalut
+function imageCropDefalut(width, height) {
+    return (
+        centerCrop(
+            makeAspectCrop(
+                {
+                    unit: '%',
+                    width: 90,
+                },
+                16 / 9,
+                width,
+                height
+            ),
+            width,
+            height
+        )
+    )
+}
 
 function OpenCamera(props) {
     const [tempImg, setTempImg] = useState({ 'img64': null });
     const [openModel, setOpenModel] = useState(false);
     const [cameraActive, setCameraActive] = useState(true);
     const [facingMode, setFacingMode] = useState(FACING_MODES.ENVIRONMENT);
+    const [cropEdit, setCropEdit] = useState(true);
+
+    // Crop image
+    const [crop, setCrop] = useState(null);
+    const [completeCrop, setCompleteCrop] = useState();
 
 
     function handleTakePhoto(dataUri) {
@@ -18,13 +44,43 @@ function OpenCamera(props) {
 
     function SubmitImg() {
         setCameraActive(false);
-        props.target({ 'img64': tempImg.img64, 'status': 'submit' });
+        console.log(cropEdit);
+        const imageResult = !cropEdit ? setCanva() : tempImg.img64;
+        props.target({ 'img64': imageResult, 'status': 'submit' });
         // window.location.reload();
     }
 
-    function close() {
-        props.target({ status: 'close' });
+    function setCanva() {
+        const canvas = document.createElement('canvas');
+        canvas.width = completeCrop.width;
+        canvas.height = completeCrop.height;
+        const ctx = canvas.getContext('2d');
+
+        const pixelRatio = window.devicePixelRatio;
+        canvas.width = completeCrop.width * pixelRatio;
+        canvas.height = completeCrop.height * pixelRatio;
+        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        ctx.imageSmoothingQuality = 'high';
+
+        const image = new Image();
+        image.src = tempImg.img64;
+        ctx.drawImage(
+            image,
+            completeCrop.x,
+            completeCrop.y,
+            completeCrop.width,
+            completeCrop.height,
+            0,
+            0,
+            completeCrop.width,
+            completeCrop.height,
+        );
+        const image64 = canvas.toDataURL('image/jpeg');
+        return image64
+        // setOutput(image64);
     }
+
+    const close = () => props.target({ status: 'close' });
 
     function changeCamera() {
         setFacingMode(
@@ -34,14 +90,19 @@ function OpenCamera(props) {
         );
     }
 
-    function revertCamera() {
-        const cameraElement = document.getElementById('camera');
-        cameraElement.style.transform = 'rotate(90deg)';
+    function onImageLoad(e) {
+        const { width, height } = e.currentTarget;
+        setCrop(imageCropDefalut(width, height));
     }
+
+    // function revertCamera() {
+    //     const cameraElement = document.getElementById('camera');
+    //     cameraElement.style.transform = 'rotate(90deg)';
+    // }
 
     return (
         <>
-            {cameraActive && (
+            {!!cameraActive && (
                 <>
                     <Camera
                         imageCompression={0.97}
@@ -54,14 +115,14 @@ function OpenCamera(props) {
                         <Button variant='secondary' onClick={changeCamera} style={{ marginRight: "1rem" }}>
                             <BsPhoneFlip />
                         </Button>
-                        <Button variant='secondary' onClick={revertCamera}>
+                        {/* <Button variant='secondary' onClick={revertCamera}>
                             <BsArrowRepeat />
-                        </Button>
+                        </Button> */}
                     </center>
                 </>
             )}
 
-            {tempImg.img64 && (
+            {!!tempImg.img64 && (
                 <Modal
                     show={openModel}
                     onHide={() => setOpenModel(!openModel)}
@@ -75,11 +136,39 @@ function OpenCamera(props) {
                     <Modal.Body>
                         {/* <p>Modal body text goes here.</p> */}
                         <center>
-                            <Image src={tempImg.img64} fluid />
+                            {!!cropEdit && (
+                                <ImageBootstrap src={tempImg.img64} fluid />
+                            )}
+
+                            {!cropEdit && (
+                                <ReactCrop
+                                    crop={crop}
+                                    onChange={(crop, percentCrop) => setCrop(percentCrop)}
+                                    onComplete={(crop, percentCrop) => setCompleteCrop(crop)}
+                                >
+                                    <ImageBootstrap src={tempImg.img64} onLoad={onImageLoad} fluid />
+                                </ReactCrop>
+                            )}
+
+                            {/* {!!completeCrop && (
+                                <img
+                                    alt=""
+                                    src={output}
+                                    style={{
+                                        width: completeCrop.width,
+                                        height: completeCrop.height
+                                    }}
+                                />
+                            )} */}
                         </center>
                     </Modal.Body>
 
                     <Modal.Footer>
+                        <Button variant={!cropEdit ? 'outline-danger' : 'outline-primary'}
+                            onClick={() => setCropEdit(!cropEdit)}
+                        >
+                            <BsCrop style={{ marginBottom: '3px' }} /> {!cropEdit ? 'Close' : 'Open'} crop
+                        </Button>
                         <Button variant="outline-dark" onClick={close}><BsPower /></Button>
                         <Button variant="secondary" onClick={() => setOpenModel(!openModel)}><BsRepeat /> Again</Button>
                         <Button variant="success" onClick={SubmitImg}><BsCheck2Circle /> Submit</Button>
