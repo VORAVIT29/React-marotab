@@ -1,16 +1,17 @@
-import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat, BsArrowRepeat, BsCrop } from "react-icons/bs";
+import { BsFillCameraFill, BsPower, BsPhoneFlip, BsCheck2Circle, BsRepeat } from "react-icons/bs";
 import { Button, Col, Modal, Row, Image as ImageBootstrap } from 'react-bootstrap';
 import ReactCrop, { centerCrop, makeAspectCrop } from 'react-image-crop'
 import Camera, { FACING_MODES } from 'react-html5-camera-photo';
-import 'react-html5-camera-photo/build/css/index.css';
-import 'react-image-crop/dist/ReactCrop.css';
-import React, { useRef, useState } from 'react';
 import UseDebounceEffect from "./Crop/UseDebounceEffect";
+import 'react-html5-camera-photo/build/css/index.css';
+import React, { useRef, useState } from 'react';
+import 'react-image-crop/dist/ReactCrop.css';
 import { BiCrop } from "react-icons/bi";
+import './OpenCamera.css';
 
 
 // Load crop defalut
-function imageCropDefalut(width, height) {
+function imageCropDefalut(naturalWidth, naturalHeight) {
     return (
         centerCrop(
             makeAspectCrop(
@@ -19,11 +20,11 @@ function imageCropDefalut(width, height) {
                     width: 90,
                 },
                 16 / 9,
-                width,
-                height
+                naturalWidth,
+                naturalHeight
             ),
-            width,
-            height
+            naturalWidth,
+            naturalHeight
         )
     )
 }
@@ -37,7 +38,7 @@ function OpenCamera(props) {
 
     // Crop image
     const [crop, setCrop] = useState(null);
-    const [completeCrop, setCompleteCrop] = useState();
+    const [completeCrop, setCompleteCrop] = useState(null);
     const previewCanvasRef = useRef(null);
     const imgRef = useRef(null);
 
@@ -163,8 +164,14 @@ function OpenCamera(props) {
     }
 
     function onImageLoad(e) {
-        const { width, height } = e.currentTarget;
+        let { width, height } = e.currentTarget;
+        width = completeCrop?.width ? completeCrop?.width : width;
+        height = completeCrop?.height ? completeCrop?.height : height;
         setCrop(imageCropDefalut(width, height));
+    }
+
+    const handelCropEdit = () => {
+        setCropEdit(!cropEdit);
     }
 
     return (
@@ -202,13 +209,13 @@ function OpenCamera(props) {
                             <center>
                                 {/* Not Edit */}
                                 {!!cropEdit && (
-                                    <ImageBootstrap src={tempImg.img64} fluid />
+                                    <ImageBootstrap src={tempImg.img64} fluid rounded />
                                 )}
 
                                 {/* Edit Crop */}
                                 {!cropEdit && (
                                     <ReactCrop crop={crop} onChange={(crop, percentCrop) => setCrop(percentCrop)}
-                                        onComplete={(c) => setCompleteCrop(c)}>
+                                        onComplete={(c) => setCompleteCrop(c)} >
                                         <ImageBootstrap
                                             ref={imgRef}
                                             src={tempImg.img64}
@@ -217,19 +224,20 @@ function OpenCamera(props) {
                                         />
                                     </ReactCrop>
                                 )}
-
+                                <br />
                                 {/* Preview Canvas Image */}
-                                {!!completeCrop && (
+                                {(!!completeCrop && !cropEdit) && (
                                     <>
-                                        <canvas
-                                            ref={previewCanvasRef}
-                                            style={{
-                                                border: '1px solid black',
-                                                objectFit: 'contain',
-                                                width: completeCrop.width,
-                                                height: completeCrop.height,
-                                            }}
-                                        />
+                                        <div style={{ marginTop: '1rem', padding: '1rem' }}>
+                                            <canvas
+                                                ref={previewCanvasRef}
+                                                className="open-camera-canvas-detail img-fluid"
+                                            // style={{
+                                            //     width: completeCrop.width,
+                                            //     height: completeCrop.height,
+                                            // }}
+                                            />
+                                        </div>
                                     </>
                                 )}
 
@@ -238,7 +246,7 @@ function OpenCamera(props) {
 
                         <Modal.Footer>
                             <Button variant={!cropEdit ? 'outline-danger' : 'outline-primary'}
-                                onClick={() => setCropEdit(!cropEdit)} >
+                                onClick={handelCropEdit} >
                                 <BiCrop style={{ marginBottom: '3px' }} /> {!cropEdit ? 'Close' : 'Open'} crop
                             </Button>
                             <Button variant="outline-dark" onClick={close}><BsPower /></Button>

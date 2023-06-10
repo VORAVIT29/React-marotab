@@ -120,7 +120,7 @@ class TemplteReport extends React.Component {
                                     {/* <td></td> */}
                                     <td colSpan={5}></td>
                                     {/* <td colSpan={6} rowSpan={2} style={{ background: 'red' }}> */}
-                                    <td colSpan={7}>
+                                    <td colSpan={6}>
                                         <center>
                                             {/* <div style={{ width: '100%', height: '100%', position: 'relative' }}> */}
                                             {/* <div style={{ width: '100%', height: '100%' }}> */}

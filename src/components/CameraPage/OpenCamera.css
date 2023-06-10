@@ -1,0 +1,6 @@
+.open-camera-canvas-detail {
+    border: 1px solid black;
+    object-fit: contain;
+    border-radius: 10px;
+    max-height: 200px;
+}
