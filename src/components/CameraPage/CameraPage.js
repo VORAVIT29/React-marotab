@@ -133,6 +133,7 @@ export const CameraPage = () => {
   }
 
 
+  // comming soon selete field
   function handlerFile(event) {
     const { files } = event.target;
     // console.log(files[0]);
