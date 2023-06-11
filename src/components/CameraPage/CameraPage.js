@@ -11,10 +11,12 @@ import { format } from "date-fns";
 import axios from "axios";
 import "./CameraPage.css";
 import { CheckCookies } from "../CookiesLogin/CheckCookies";
+import { json } from "react-router-dom";
 
 export const CameraPage = () => {
   const [img, setImg] = useState(dataImg);
-  const [confidencePercentage, setConfidencePercentage] = useState(Number);
+  const [room, setRoom] = useState(0);
+  const [confidencePercentage, setConfidencePercentage] = useState(0);
   const [ShowAlert, setShowAlert] = useState(false);
   const [detailToast, setDetailToast] = useState({ 'status': '', 'result': '' });
   const [isOpencamera, setIsOpencamera] = useState(false);
@@ -74,15 +76,16 @@ export const CameraPage = () => {
   async function setDataImg(dataFromChild) {
     const target = dataFromChild;
     target.status === 'submit' && setImg({ ...img, 'piture': target.img64 });
-    await setPage();
+    setPage();
   }
 
-  async function selectRoomNumber(event) {
+  function selectRoomNumber(event) {
     const { value, name } = event.target;
-    setImg({ ...img, [name]: value });
+    img.room_number = value;
+    // setImg({ ...img, [name]: value });
 
     // find data camera
-    await findDataImgByRoomNumber(value);
+    findDataImgByRoomNumber(value);
   }
 
   async function findDataImgByRoomNumber(roomNumber) {
@@ -99,9 +102,8 @@ export const CameraPage = () => {
           setConfidencePercentage(0);
         }
       })
-      .catch((error) => { console.error(error.message); setShowAlert(true); setDetailToast({ 'status': 'Danger', 'result': error.message }) })
+      .catch((error) => { console.error(error); setShowAlert(true); setDetailToast({ 'status': 'Danger', 'result': error }) })
       .finally(() => { setShowLoad(false); })
-
   }
 
   function save() {
@@ -119,7 +121,7 @@ export const CameraPage = () => {
         setDetailToast({ 'status': status, 'result': status })
       })
       .catch((error) => {
-        console.error(error.message);
+        console.error(error);
         setShowAlert(true);
         setDetailToast({ 'status': 'Danger', 'result': error.message })
       })
@@ -134,20 +136,20 @@ export const CameraPage = () => {
 
 
   // comming soon selete field
-  function handlerFile(event) {
-    const { files } = event.target;
-    // console.log(files[0]);
-    // console.log(URL.createObjectURL(files[0]));
-    setImg({ ...img, piture: URL.createObjectURL(files[0]) })
-    // document.querySelector('#file-name').click();
-  }
+  // function handlerFile(event) {
+  //   const { files } = event.target;
+  //   console.log(files[0]);
+  //   console.log(URL.createObjectURL(files[0]));
+  //   setImg({ ...img, piture: URL.createObjectURL(files[0]) })
+  //   document.querySelector('#file-name').click();
+  // }
 
   useEffect(() => {
     setTimeout(() => {
       getAPi();
       setShowLoad(false);
     }, 800);
-  }, [])
+  }, []);
 
   return (
     <>
@@ -203,9 +205,9 @@ export const CameraPage = () => {
                       })}
                     </Form.Select>
                     {/* <Button variant="light" onClick={() => findDataImgByRoomNumber(img.room_number)} >
-                      <BsSearch /> &nbsp;
-                      {sessionStorage.getItem('languageENG') === 'true' ? 'Search...' : 'ค้นหา...'}
-                    </Button> */}
+                        <BsSearch /> &nbsp;
+                        {sessionStorage.getItem('languageENG') === 'true' ? 'Search...' : 'ค้นหา...'}
+                      </Button> */}
                     {/* </InputGroup> */}
                   </Col>
                 </Row>
